@@ -1,0 +1,94 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $black;
+}
+
+.box {
+  height: 50vh;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: -0.5rem 0.5rem $white;
+  &__image {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid $white;
+    background-color: $black;
+  }
+  &__logo {
+    width: rem(100px);
+    height: rem(100px);
+  }
+  &__form {
+    height: 70%;
+    border-right: 3px solid $white;
+    border-bottom: 3px solid $white;
+    border-left: 3px solid $white;
+    background-color: $black;
+    position: relative;
+  }
+  &__figure {
+    &--x {
+      width: rem(90px);
+      position: absolute;
+      top: rem(5px);
+      left: rem(5px);
+      @include media.query(">=600px") {
+        top: rem(10px);
+        left: rem(15px);
+      }
+    }
+    &--o {
+      width: rem(120px);
+      position: absolute;
+      bottom: rem(30px);
+      right: 0;
+    }
+  }
+  @include media.query(">=600px") {
+    width: rem(550px);
+  }
+}
+
+.field {
+  height: 103%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: left;
+  border: none;
+  &__btn {
+    font-family: "Encode Sans SC", sans-serif;
+    padding: 0.5rem;
+    margin-top: rem(2px);
+    background-color: transparent;
+    border: 3px solid $white;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+  }
+  &__span {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    &::after {
+      content: "\2B9E";
+      color: $yellow;
+      margin-left: rem(5px);
+    }
+  }
+}

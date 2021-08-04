@@ -1,0 +1,40 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.no-access {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &__text {
+    font-size: 3rem;
+    color: $white;
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    font-family: "Encode Sans SC", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: $white;
+    padding: 0.7rem;
+    margin-top: rem(20px);
+    z-index: 100;
+    background-color: transparent;
+    border: 3px solid $white;
+    transition: box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+    &::before {
+      content: "\2B9c";
+      color: $yellow;
+      margin-right: rem(5px);
+    }
+  }
+}

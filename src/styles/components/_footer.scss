@@ -1,0 +1,110 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/functions";
+@use "../abstracts//animations";
+
+.footer {
+  height: 15vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  border-top: 2px solid rgb(223, 223, 223);
+  margin-top: 4rem;
+
+  @include media.query(">=lg") {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+}
+
+.company {
+  &__options {
+    width: rem(470px);
+    padding-top: 2rem;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    @include media.query(">=lg") {
+      width: 30rem;
+      margin-top: rem(-10px);
+      margin-left: rem(30px);
+    }
+  }
+  &__list {
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $black;
+    font-size: 1.3rem;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      height: rem(6px);
+      position: absolute;
+      left: 25%;
+      bottom: rem(-10px);
+      background: $pink;
+      transition: width 0.5s ease 0s, left 0.5s ease 0s;
+      width: 0;
+    }
+
+    &:hover::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.socials {
+  &__image {
+    width: rem(40px);
+    height: rem(40px);
+
+    &.facebook {
+      &:hover {
+        filter: invert(43%) sepia(81%) saturate(3566%) hue-rotate(202deg)
+          brightness(105%) contrast(103%);
+      }
+    }
+
+    &.instagram {
+      &:hover {
+        filter: invert(75%) sepia(66%) saturate(575%) hue-rotate(354deg)
+          brightness(99%) contrast(94%);
+      }
+    }
+
+    &.youtube {
+      &:hover {
+        filter: invert(70%) sepia(90%) saturate(5599%) hue-rotate(324deg)
+          brightness(91%) contrast(143%);
+      }
+    }
+
+    &.twitter {
+      &:hover {
+        filter: invert(81%) sepia(24%) saturate(6161%) hue-rotate(153deg)
+          brightness(106%) contrast(102%);
+      }
+    }
+  }
+
+  &__options {
+    width: rem(400px);
+    padding-left: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__list {
+    list-style: none;
+  }
+}

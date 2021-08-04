@@ -1,0 +1,28 @@
+// ABSTRACT
+@import "./abstracts/variables.scss";
+@import "./abstracts/functions";
+
+// BASE
+@import "./base/fonts";
+@import "./base/reset";
+
+// COMPONENTS
+@import "./components/app";
+@import "./components/navbar";
+@import "./components/navbarBurger";
+@import "./components/navbarMobile";
+@import "./components/banner";
+@import "./components/cursor";
+@import "./components/inputField";
+@import "./components/spinner";
+@import "./components/cookies";
+@import "./components/product";
+@import "./components/footer";
+
+// PAGES
+@import "./pages/Login/login";
+@import "./pages/NoAccess/noAccess";
+@import "./pages/LandingPage/categories";
+@import "./pages/LandingPage/featured";
+@import "./pages/LandingPage/services";
+@import "./pages/LandingPage/newsletter";

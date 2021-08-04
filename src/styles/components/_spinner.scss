@@ -1,0 +1,24 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/functions";
+@use "../abstracts//animations";
+
+.spinner {
+  width: rem(100px);
+  height: rem(100px);
+  transform: rotate(-90deg);
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    overflow: hidden;
+    stroke: $pink;
+  }
+
+  &__circle {
+    stroke-dasharray: 156;
+    stroke-dashoffset: 156;
+    animation: load 2.3s infinite;
+  }
+}

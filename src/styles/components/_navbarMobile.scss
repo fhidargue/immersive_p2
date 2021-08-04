@@ -1,0 +1,146 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/functions";
+
+.mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 10%;
+  right: -100%;
+  z-index: 100;
+  background-color: #111;
+  transition: right 0.8s ease-in-out, background-color 1s ease-in-out;
+
+  &.active {
+    right: 0;
+  }
+
+  @include media.query(">=md") {
+    display: none;
+  }
+
+  &__image {
+    margin-top: 18rem;
+    margin-left: -12rem;
+    opacity: 0;
+    transform: translateY(-3rem);
+    transition: opacity 5s ease-in-out, transform 2s ease-in-out;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @include media.query(">=sm") {
+      margin-top: -10rem;
+      margin-left: -10rem;
+    }
+  }
+}
+
+.list {
+  position: absolute;
+  top: 21%;
+  right: 5%;
+  list-style: none;
+  font-weight: 700;
+  text-align: right;
+
+  &__item {
+    &--link {
+      font-size: 3rem;
+      text-decoration: none;
+      color: #fff;
+      transition: opacity 2.3s ease-in-out, color 0.3s ease-in-out;
+      opacity: 0;
+
+      &:hover {
+        color: #fffc22;
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+    &.active {
+      transform: translateY(0);
+      margin-bottom: 0;
+    }
+
+    &--1 {
+      transform: translateY(30px);
+      transition: transform 1s ease-in-out;
+      margin-bottom: 0.5rem;
+
+      &.active {
+        transform: translateY(0);
+      }
+    }
+
+    &--2 {
+      transform: translateY(60px);
+      transition: transform 1.2s ease-in-out;
+      margin-bottom: 0.5rem;
+
+      &.active {
+        transform: translateY(0);
+      }
+    }
+
+    &--3 {
+      transform: translateY(90px);
+      transition: transform 1.4s ease-in-out;
+      margin-bottom: 0.5rem;
+
+      &.active {
+        transform: translateY(0);
+      }
+    }
+
+    &--4 {
+      transform: translateY(120px);
+      transition: transform 1.6s ease-in-out;
+      margin-bottom: 0.5rem;
+
+      &.active {
+        transform: translateY(0);
+      }
+    }
+
+    &--5 {
+      transform: translateY(150px);
+      opacity: 0;
+      transition: transform 1.8s ease-in-out, opacity 2.3s ease-in-out;
+
+      &.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+  &__btn {
+    font-size: 3rem;
+    font-family: "Encode Sans SC", sans-serif;
+    font-weight: 700;
+    padding: 0.5rem;
+    color: $white;
+    background-color: transparent;
+    border: none;
+    margin-top: rem(-8px);
+    transition: color 0.3s ease-in-out;
+    &:hover {
+      color: $yellow;
+      cursor: pointer;
+    }
+    &::before {
+      content: "\2B9c";
+      color: $yellow;
+      margin-right: rem(15px);
+    }
+  }
+}

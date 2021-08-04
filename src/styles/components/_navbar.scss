@@ -1,0 +1,69 @@
+@use "../abstracts/breakpoints" as media;
+
+$colors: #ff1f69, #fff, #ccc;
+
+.options {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50vw;
+  padding-left: 0;
+  &__item {
+    font-size: 1.2rem;
+    list-style: none;
+    margin-right: 2rem;
+    &--link {
+      text-decoration: none;
+      color: #fff;
+      // text-transform: uppercase;
+      font-weight: 700;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        height: rem(6px);
+        position: absolute;
+        left: 25%;
+        bottom: rem(-10px);
+        background: #fffc22;
+        transition: width 0.5s ease 0s, left 0.5s ease 0s;
+        width: 0;
+      }
+
+      &:hover::after {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+  @include media.query(">=md") {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__btn {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    padding: 0.5rem;
+    margin-top: rem(2px);
+    color: $white;
+    background-color: transparent;
+    border: 3px solid $white;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $light-green;
+      cursor: pointer;
+    }
+    &::before {
+      content: "\2B9c";
+      color: $yellow;
+      margin-right: rem(5px);
+    }
+  }
+
+  @include media.query(">=md") {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

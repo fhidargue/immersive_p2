@@ -1,0 +1,63 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/functions";
+@use "../abstracts/variables";
+
+.cookies {
+  height: 30vh;
+  width: 100vw;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  opacity: 0;
+  background-color: #fff;
+  border: 3px solid $black;
+  transition: opacity 0.5s ease-in-out;
+
+  &__message {
+    padding: 1rem;
+    @include media.query(">=lg") {
+      width: 80%;
+    }
+  }
+
+  &__btn {
+    width: rem(230px);
+    font-size: 1.3rem;
+    font-family: "Encode Sans SC", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: $black;
+    padding: 0.7rem;
+    z-index: 100;
+    background-color: transparent;
+    border: 3px solid $black;
+    transition: box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    @include media.query(">=lg") {
+      width: 20%;
+      margin-right: 2rem;
+    }
+    @include media.query(">=xl") {
+      width: 15%;
+      margin-right: 2rem;
+    }
+  }
+  @include media.query(">=500px") {
+    height: 25vh;
+  }
+  @include media.query(">=600px") {
+    height: 20vh;
+  }
+  @include media.query(">=lg") {
+    height: 15vh;
+    flex-direction: row;
+  }
+}

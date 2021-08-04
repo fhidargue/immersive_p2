@@ -1,0 +1,198 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.newsletter {
+  height: 30vh;
+  position: relative;
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    padding-top: 5rem;
+  }
+
+  &__image {
+    &.flash {
+      width: rem(100px);
+      height: rem(100px);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: rotate(-20deg);
+
+      @include media.query(">=lg") {
+        width: rem(130px);
+        height: rem(130px);
+        bottom: 0;
+        left: rem(100px);
+      }
+
+      @include media.query(">=xl") {
+        width: rem(160px);
+        height: rem(160px);
+        bottom: 0;
+        left: rem(100px);
+        transform: rotate(-40deg);
+      }
+    }
+
+    &.triangle {
+      width: rem(80px);
+      height: rem(80px);
+      position: absolute;
+      top: rem(50px);
+      left: rem(50px);
+      transform: rotate(-20deg);
+
+      @include media.query(">=lg") {
+        width: rem(140px);
+        height: rem(140px);
+        top: rem(30px);
+        left: rem(190px);
+        transform: rotate(-40deg);
+      }
+
+      @include media.query(">=xl") {
+        top: rem(30px);
+        left: rem(280px);
+        transform: rotate(-40deg);
+      }
+    }
+
+    &.star {
+      width: rem(60px);
+      height: rem(60px);
+      position: absolute;
+      top: rem(10px);
+      right: rem(40px);
+      transform: rotate(20deg);
+
+      @include media.query(">=lg") {
+        width: rem(80px);
+        height: rem(80px);
+        top: rem(10px);
+        right: rem(40px);
+        transform: rotate(-40deg);
+      }
+
+      @include media.query(">=xl") {
+        width: rem(120px);
+        height: rem(120px);
+        top: rem(20px);
+        right: rem(80px);
+        transform: rotate(-40deg);
+      }
+    }
+
+    &.stop {
+      width: rem(60px);
+      height: rem(60px);
+      position: absolute;
+      bottom: rem(10px);
+      right: rem(50px);
+      transform: rotate(50deg);
+
+      @include media.query(">=lg") {
+        width: rem(80px);
+        height: rem(80px);
+        bottom: rem(10px);
+        right: rem(200px);
+        transform: rotate(50deg);
+      }
+
+      @include media.query(">=xl") {
+        width: rem(110px);
+        height: rem(110px);
+        bottom: rem(10px);
+        right: rem(250px);
+        transform: rotate(50deg);
+      }
+    }
+  }
+}
+
+.form {
+  &__field {
+    border: none;
+  }
+
+  &__label {
+    font-size: 1.5rem;
+  }
+
+  &__actions {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include media.query(">=lg") {
+      flex-direction: row;
+      padding-bottom: 5rem;
+    }
+  }
+
+  &__input {
+    border: 3px solid $black;
+    height: rem(50px);
+    width: rem(400px);
+    font-size: 1.5rem;
+    font-family: "Encode Sans SC", sans-serif;
+    z-index: 100;
+
+    @include media.query(">=900px") {
+      width: rem(500px);
+    }
+
+    @include media.query(">=lg") {
+      height: rem(60px);
+      border-right: none;
+    }
+  }
+
+  &__btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: $white;
+    background-color: $black;
+    border: none;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
+      color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+
+    @include media.query(">=lg") {
+      margin-top: 0;
+
+      height: rem(60px);
+      border: 3px solid $black;
+      padding: 0.5rem;
+
+      &:hover {
+        color: $black;
+        background-color: $white;
+        border-right: 3px solid $black;
+        border-top: 3px solid $black;
+        border-bottom: 3px solid $black;
+        box-shadow: none;
+      }
+    }
+  }
+}

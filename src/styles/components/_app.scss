@@ -1,0 +1,163 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/variables";
+@use "../abstracts/functions";
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 4rem;
+  pointer-events: none;
+  margin-left: 1rem;
+
+  @include media.query(">=md") {
+    margin-left: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  // .App-logo {
+  //   animation: App-logo-spin infinite 20s linear;
+  // }
+}
+
+.header {
+  background-color: #111;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+::-webkit-scrollbar {
+  background-color: $black;
+  width: rem(9px);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $white;
+  border: 2px solid $black;
+  border-radius: 20px;
+  width: 5px !important;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+//AOS test
+
+.test {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+
+  &__1 {
+    width: 50%;
+    height: auto;
+    background-color: $pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__2 {
+    width: 50%;
+    height: auto;
+    background-color: $blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    width: 50%;
+    height: 50%;
+    background-color: $green;
+  }
+}
+
+//slider
+
+.swiper-container {
+  width: 100%;
+  height: 50vh;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: 50%;
+  min-height: 20vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active-next {
+  background-color: $white !important;
+}
+
+.swiper-pagination-bullet-active-next-next {
+  background-color: $white !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: $white !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active.swiper-pagination-bullet-active-main {
+  background-color: $black !important;
+}
+
+.swipper-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.swipper-image {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+.swipper-text {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: $black !important;
+  background-color: transparent;
+  border: none;
+}

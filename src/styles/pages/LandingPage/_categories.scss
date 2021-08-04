@@ -1,0 +1,242 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__wrapper {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include media.query(">=sm") {
+      flex-wrap: wrap;
+    }
+
+    @include media.query(">=md") {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__middle {
+    height: 55%;
+    display: flex;
+    border: 5px solid $black;
+    position: relative;
+
+    &--img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    @include media.query(">=sm") {
+      width: 50%;
+      height: 70%;
+    }
+
+    @include media.query(">=md") {
+      width: 40%;
+      height: 100%;
+    }
+  }
+
+  &__left {
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @include media.query(">=sm") {
+      width: 50%;
+      height: 70%;
+      flex-direction: column;
+    }
+
+    &--top {
+      width: 50%;
+      height: 100%;
+      border: 5px solid $black;
+      background-image: url("https://res.cloudinary.com/teepublic/image/private/s--vsjID3Az--/c_crop,x_10,y_10/c_fit,h_846/c_crop,g_north_west,h_1007,w_1007,x_-170,y_-81/l_upload:v1507037313:production:blanks:n2pk899a8qrzxtz4tyvn/fl_layer_apply,g_north_west,x_-297,y_-212/b_rgb:000000/c_limit,f_jpg,h_630,q_90,w_630/v1593100391/production/designs/11667890_0.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      @include media.query(">=sm") {
+        width: 100%;
+      }
+
+      @include media.query(">=md") {
+        height: 80%;
+      }
+    }
+
+    &--bottom {
+      width: 50%;
+      height: 100%;
+      border: 5px solid $black;
+      background-image: url("https://m.media-amazon.com/images/I/B1CP7B2AkVS._CLa%7C2140,2000%7C81Pj6Zl-3lL.png%7C0,0,2140,2000+648.0,529.0,809.0,971.0.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      @include media.query(">=sm") {
+        width: 100%;
+      }
+    }
+
+    @include media.query(">=md") {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  &__right {
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &--top {
+      width: 50%;
+      height: 100%;
+      border: 5px solid $black;
+      background-image: url("https://ih1.redbubble.net/image.2467651902.3388/ssrco,classic_tee,womens,fafafa:ca443f4786,front_alt,square_product,600x600.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      @include media.query(">=md") {
+        width: 100%;
+      }
+    }
+
+    &--bottom {
+      width: 50%;
+      height: 100%;
+      border: 4px solid $black;
+      background-image: url("https://ae01.alicdn.com/kf/HTB1dQdXUkvoK1RjSZFwq6AiCFXay/new-Migos-Culture-Hat-harajuku-pop-Bucket-Hats-Hip-hop-Rap-Album-Bad-And-Boujee-men.jpg_640x640.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      @include media.query(">=md") {
+        width: 100%;
+        height: 80%;
+      }
+    }
+
+    @include media.query(">=sm") {
+      width: 100%;
+      height: 30%;
+      margin-left: -50%;
+    }
+
+    @include media.query(">=md") {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      margin-left: 0;
+    }
+  }
+}
+
+.content {
+  &__left {
+    width: rem(150px);
+    text-decoration: none;
+    color: $black;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.7rem;
+    border: 3px solid $black;
+    background-color: $white;
+    margin-bottom: rem(10px);
+    transition: box-shadow 0.4s ease-in-out;
+
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+
+    @include media.query(">=450px") {
+      width: rem(180px);
+      font-size: 1.3rem;
+    }
+  }
+
+  &__right {
+    width: rem(150px);
+    text-decoration: none;
+    color: $black;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.7rem;
+    border: 3px solid $black;
+    background-color: $white;
+    margin-bottom: rem(10px);
+    transition: box-shadow 0.4s ease-in-out;
+
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $light-green;
+      cursor: pointer;
+    }
+
+    @include media.query(">=450px") {
+      width: rem(180px);
+      font-size: 1.3rem;
+    }
+  }
+
+  &__middle {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top: 50%;
+
+    &--link {
+      width: rem(150px);
+      text-decoration: none;
+      color: $black;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0.7rem;
+      border: 3px solid $black;
+      background-color: $white;
+      margin-bottom: rem(10px);
+      transition: box-shadow 0.4s ease-in-out;
+
+      &:hover {
+        box-shadow: -0.5rem 0.5rem $yellow;
+        cursor: pointer;
+      }
+
+      @include media.query(">=450px") {
+        width: rem(180px);
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
