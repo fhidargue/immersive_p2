@@ -32,3 +32,20 @@ export const getProductsByCategory = (categoryUrl) => {
   }
   return result;
 };
+
+export const getProduct = (productUrl) => {
+  const productPromise = new Promise((res) => {
+    const inventory = JSON.parse(localStorage.getItem("inventory"));
+    let result = [];
+    result = inventory
+      .map((item) => {
+        return item.products || [];
+      })
+      .flat()
+      .find((item) => {
+        return item.url === productUrl;
+      });
+    res(result);
+  });
+  return productPromise;
+};

@@ -9,6 +9,7 @@ import Newsletter from "../Newsletter/Newsletter";
 import Filters from "../Filters/Filters";
 import Spinner from "../Spinner/Spinner";
 import { getProducts } from "../../services/product-service";
+import Timeline from "../Timeline/Timeline";
 
 const ProductList = (props) => {
   const { isFetching, setIsFetching, setGotProducts } =
@@ -18,6 +19,7 @@ const ProductList = (props) => {
   const [filterValue, setFilterValue] = useState("");
 
   useEffect(() => {
+    document.title = "Remotion - Product List";
     setIsFetching(true);
     getProducts(categoryUrl, filterValue).then((productsResponse) => {
       setProductsToShow(productsResponse);
@@ -37,6 +39,7 @@ const ProductList = (props) => {
       <main className="main">
         <section className="product-list">
           <h1 className="product-list__title">Product List</h1>
+          <Timeline page={`Product List`} url={`products/all`} />
           <Filters setFilterValue={setFilterValue} />
           <div className="product-list__wrapper">
             {isFetching && <Spinner />}

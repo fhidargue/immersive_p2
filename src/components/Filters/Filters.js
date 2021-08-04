@@ -68,7 +68,13 @@ const Filters = (props) => {
             </ul>
           </div>
           <div className="searchFilter">
-            <label htmlFor={`product-filter`}>Search</label>
+            <label
+              htmlFor={`product-filter`}
+              className="searchFilter__label"
+              value={`Filter by Name`}
+            >
+              Filter by Name
+            </label>
             <input
               type={`text`}
               className="searchFilter__input"
