@@ -7,10 +7,10 @@ const Product = (props) => {
 
     };
 
-    const {image, name, price, id} = props;
+    const {image, name, price, id, url} = props;
     return(
-        <div className="product__wrapper" data-aos={`fade-up`} data-aos-duration={`2000`}>
-            <Link><img className={`product__image product${id}`} src={image} alt={`Product ${name}`}/></Link>
+        <div className="product__wrapper">
+            <Link to={`/products/${url}`}><img className={`product__image product${id}`} src={image} alt={`Product ${name}`}/></Link>
             <p className="product__name">{name}</p>
             <p className="product__price">${price}</p>
             <Button className={`product`} extraClass={`product${id}`} type={`button`} handleClick={addToCart} buttonLabel={`Add To Cart`}/>

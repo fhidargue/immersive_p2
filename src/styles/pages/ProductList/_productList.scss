@@ -1,0 +1,32 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.product-list {
+  margin-top: 8rem;
+  padding-bottom: 5rem;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    @include media.query(">=sm") {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  &__title {
+    font-size: 4rem;
+
+    @include media.query(">=sm") {
+      font-size: 5rem;
+    }
+
+    @include media.query(">=xl") {
+      font-size: 6rem;
+    }
+  }
+}

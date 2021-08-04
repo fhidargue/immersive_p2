@@ -7,6 +7,7 @@ const Featured = () => {
     const pop = products.find((item) => {
         return item.id === 1;
     });
+    const categoryUrl = "pop-culture";
 
     return(
         <section className="featured" data-aos={`fade-up`}>
@@ -15,7 +16,7 @@ const Featured = () => {
             {
                 pop.products.map((product) => {
                     return (
-                        <Product key={product.id} image={product.first_image} name={product.name} price={product.price} id={product.id}/>
+                        <Product key={product.id} image={product.first_image} name={product.name} price={product.price} id={product.id} categoryUrl={categoryUrl} url={product.url}/>
                     )
                 })
             }

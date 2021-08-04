@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import NavbarBurger from '../Navbar/NavbarBurger';
 import NavbarMobile from '../Navbar/NavbarMobile';
@@ -8,7 +9,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <Link to={`/home`}><img src={logo} className="App-logo" alt="logo" /></Link>
             <Navbar/>
             <NavbarBurger/>
             <NavbarMobile/>

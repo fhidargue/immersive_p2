@@ -21,7 +21,7 @@ const NavbarBurger = () => {
         return false;
     }
 
-    return isLogged && (
+    return (
         <button className="burger" title="Menu Mobile" onClick={() => {
             openBurger();
         }} tabIndex={`0`}>

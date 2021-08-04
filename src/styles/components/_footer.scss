@@ -3,39 +3,48 @@
 @use "../abstracts//animations";
 
 .footer {
-  height: 15vh;
+  height: 30vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   border-top: 2px solid rgb(223, 223, 223);
-  margin-top: 4rem;
+  margin-top: 8rem;
+
+  @include media.query(">=500px") {
+    height: 20vh;
+  }
 
   @include media.query(">=lg") {
     flex-direction: row;
     justify-content: space-between;
     margin-top: 2rem;
+    height: 15vh;
   }
 }
 
 .company {
   &__options {
-    width: rem(470px);
-    padding-top: 2rem;
+    width: 100%;
     padding-left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+
+    @include media.query(">=500px") {
+      width: rem(450px);
+      flex-direction: row;
+    }
 
     @include media.query(">=lg") {
       width: 30rem;
-      margin-top: rem(-10px);
       margin-left: rem(30px);
     }
   }
   &__list {
     list-style: none;
+    margin-bottom: 0.3rem;
   }
 
   &__link {
@@ -98,7 +107,7 @@
   }
 
   &__options {
-    width: rem(400px);
+    width: 18rem;
     padding-left: 0;
     display: flex;
     justify-content: space-around;

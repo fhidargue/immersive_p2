@@ -18,12 +18,12 @@ const Navbar = () => {
         history.push('/');
     }
 
-    return isLogged && (
+    return (
         <ul className="options">
-            <li className="options__item"><Link className="options__item--link" top={`/`}>Work</Link></li>
-            <li className="options__item"><Link className="options__item--link" top={`/`}>Services</Link></li>
-            <li className="options__item"><Link className="options__item--link" top={`/`}>About</Link></li>
-            <li className="options__item"><Link className="options__item--link" top={`/`}>Careers</Link></li>
+            <li className="options__item"><Link className="options__item--link" to={`/products/all`}>Products</Link></li>
+            <li className="options__item"><Link className="options__item--link" to={`/products/clearance`}>Clearance</Link></li>
+            <li className="options__item"><Link className="options__item--link" to={`/`}>About</Link></li>
+            <li className="options__item"><Link className="options__item--link" to={`/`}>Careers</Link></li>
             <li className="options__item"><Button className={`options`} type={`button`} buttonLabel={`Logout`} handleClick={logout}/></li>
         </ul>
     )
