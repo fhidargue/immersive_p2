@@ -1,0 +1,252 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.product-page {
+  margin-top: 7rem;
+  padding-bottom: 5rem;
+
+  @include media.query(">=md") {
+    margin-top: 5rem;
+  }
+
+  &__wrapper {
+    height: 130vh;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: column;
+
+    @include media.query(">=md") {
+      height: 100vh;
+      flex-direction: row;
+    }
+  }
+
+  &__image {
+    @include media.query(">=md") {
+      width: 50%;
+    }
+
+    @include media.query(">=xl") {
+      width: 45%;
+    }
+
+    @include media.query(">=1600px") {
+      width: 40%;
+    }
+
+    @include media.query(">=1800px") {
+      width: 38%;
+    }
+  }
+
+  &__portrait {
+    height: rem(500px);
+    width: rem(350px);
+    margin-top: 1.5rem;
+
+    @include media.query(">=md") {
+      margin-top: 0;
+      width: 100%;
+      height: 90%;
+    }
+
+    @include media.query(">=lg") {
+      width: 100%;
+      height: 91%;
+    }
+  }
+
+  &__details {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: column;
+
+    @include media.query(">=md") {
+      width: 50%;
+      height: 90%;
+    }
+
+    @include media.query(">=lg") {
+      width: 60%;
+    }
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    padding: 0 1rem;
+
+    @include media.query(">=sm") {
+      font-size: 2rem;
+      padding: 0 8rem;
+    }
+
+    @include media.query(">=md") {
+      padding: 0;
+      padding-right: 2rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.1rem;
+    padding: 0 1.5rem;
+
+    @include media.query(">=sm") {
+      font-size: 1.5rem;
+      padding: 0 8rem;
+    }
+
+    @include media.query(">=md") {
+      padding: 0;
+      padding-right: 2rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__price {
+    font-size: 2rem;
+    font-weight: 700;
+
+    @include media.query(">=sm") {
+      font-size: 2.5rem;
+      padding: 0 8rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__fieldset {
+    border: none;
+    width: rem(90px);
+
+    @include media.query(">=sm") {
+      width: 27rem;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      flex-direction: row;
+    }
+
+    &--division {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: row;
+      position: relative;
+    }
+  }
+
+  &__btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: $white;
+    background-color: $black;
+    border: none;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
+      color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+
+    @include media.query(">=sm") {
+      margin-top: 0;
+    }
+  }
+
+  &__input {
+    width: rem(83px);
+    height: 3.75rem;
+    font-size: 1.5rem;
+    border: 3px solid $black;
+    font-family: "Encode Sans SC", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    @include media.query(">=sm") {
+      height: 3.85rem;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: rem(-30px);
+    font-size: 1.1rem;
+
+    @include media.query(">=sm") {
+      font-size: 1.5rem;
+      top: rem(-40px);
+    }
+  }
+}
+
+.plus {
+  &__btn {
+    width: rem(50px);
+    height: 3.75rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    color: $white;
+    background-color: $black;
+    border: none;
+    border-right: 3px solid $black;
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
+    border-left: none;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $black;
+    }
+
+    @include media.query(">=sm") {
+      height: 3.85rem;
+    }
+  }
+}
+
+.minus {
+  &__btn {
+    width: rem(50px);
+    height: 3.75rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    color: $white;
+    background-color: $black;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-left: 3px solid $black;
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
+    border-right: none;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $black;
+    }
+
+    @include media.query(">=sm") {
+      height: 3.85rem;
+    }
+  }
+}

@@ -54,6 +54,7 @@ const ProductList = (props) => {
                     id={item.id}
                     categoryUrl={categoryUrl}
                     url={item.url}
+                    item={item}
                   />
                 );
               })}

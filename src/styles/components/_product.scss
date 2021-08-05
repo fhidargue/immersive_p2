@@ -76,4 +76,31 @@
       }
     }
   }
+
+  &__link {
+    text-decoration: none;
+    color: $black;
+    transition: color 0.4s ease-in-out;
+
+    &.product1 {
+      &:hover {
+        color: $pink;
+      }
+    }
+    &.product2 {
+      &:hover {
+        color: $blue;
+      }
+    }
+    &.product3 {
+      &:hover {
+        color: $light-green;
+      }
+    }
+    &.product4 {
+      &:hover {
+        color: $purple;
+      }
+    }
+  }
 }

@@ -15,108 +15,9 @@
   }
 
   &__title {
-    font-size: 3rem;
+    font-size: 2.7rem;
     font-weight: 700;
     padding-top: 5rem;
-  }
-
-  &__image {
-    &.flash {
-      width: rem(100px);
-      height: rem(100px);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      transform: rotate(-20deg);
-
-      @include media.query(">=lg") {
-        width: rem(130px);
-        height: rem(130px);
-        bottom: 0;
-        left: rem(100px);
-      }
-
-      @include media.query(">=xl") {
-        width: rem(160px);
-        height: rem(160px);
-        bottom: 0;
-        left: rem(100px);
-        transform: rotate(-40deg);
-      }
-    }
-
-    &.triangle {
-      width: rem(80px);
-      height: rem(80px);
-      position: absolute;
-      top: rem(50px);
-      left: rem(50px);
-      transform: rotate(-20deg);
-
-      @include media.query(">=lg") {
-        width: rem(140px);
-        height: rem(140px);
-        top: rem(30px);
-        left: rem(190px);
-        transform: rotate(-40deg);
-      }
-
-      @include media.query(">=xl") {
-        top: rem(30px);
-        left: rem(280px);
-        transform: rotate(-40deg);
-      }
-    }
-
-    &.star {
-      width: rem(60px);
-      height: rem(60px);
-      position: absolute;
-      top: rem(10px);
-      right: rem(40px);
-      transform: rotate(20deg);
-
-      @include media.query(">=lg") {
-        width: rem(80px);
-        height: rem(80px);
-        top: rem(10px);
-        right: rem(40px);
-        transform: rotate(-40deg);
-      }
-
-      @include media.query(">=xl") {
-        width: rem(120px);
-        height: rem(120px);
-        top: rem(20px);
-        right: rem(80px);
-        transform: rotate(-40deg);
-      }
-    }
-
-    &.stop {
-      width: rem(60px);
-      height: rem(60px);
-      position: absolute;
-      bottom: rem(10px);
-      right: rem(50px);
-      transform: rotate(50deg);
-
-      @include media.query(">=lg") {
-        width: rem(80px);
-        height: rem(80px);
-        bottom: rem(10px);
-        right: rem(200px);
-        transform: rotate(50deg);
-      }
-
-      @include media.query(">=xl") {
-        width: rem(110px);
-        height: rem(110px);
-        bottom: rem(10px);
-        right: rem(250px);
-        transform: rotate(50deg);
-      }
-    }
   }
 }
 
@@ -166,6 +67,7 @@
   }
 
   &__btn {
+    width: rem(180px);
     font-size: 1.5rem;
     font-weight: 700;
     font-family: "Encode Sans SC", sans-serif;
