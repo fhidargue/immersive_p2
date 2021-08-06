@@ -6,7 +6,7 @@ $colors: #ff1f69, #fff, #ccc;
   display: none;
   justify-content: flex-start;
   align-items: center;
-  width: 50vw;
+  width: 61vw;
   padding-left: 0;
   &__item {
     font-size: 1.2rem;
@@ -33,6 +33,12 @@ $colors: #ff1f69, #fff, #ccc;
       &:hover::after {
         width: 100%;
         left: 0;
+      }
+
+      &.cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
@@ -64,5 +70,44 @@ $colors: #ff1f69, #fff, #ccc;
   @include media.query(">=md") {
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+}
+
+.cart-icon {
+  filter: invert(1);
+  width: rem(30px);
+  height: rem(30px);
+  margin-right: rem(10px);
+
+  &--mobile {
+    filter: invert(1);
+    width: rem(50px);
+    height: rem(50px);
+    margin-right: rem(20px);
+  }
+}
+
+.cart {
+  &__products {
+    margin-left: rem(20px);
+
+    &Number {
+      background-color: $yellow;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50%;
+      color: $black;
+
+      &--mobile {
+        font-size: 2rem;
+        background-color: $yellow;
+        padding: 0.3rem 1.09rem;
+        border-radius: 50%;
+        color: $black;
+      }
+    }
+
+    &--mobile {
+      margin-left: rem(20px);
+    }
   }
 }

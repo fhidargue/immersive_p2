@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 
 const Product = (props) => {
-  const { image, name, price, id, url, item } = props;
+  const { image, name, price, id, url } = props;
+  const history = useHistory();
+
   const addToCart = () => {
-    console.log("product: ", item);
+    history.push(`/product/${url}`);
   };
 
   return (

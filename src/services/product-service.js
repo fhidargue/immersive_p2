@@ -6,7 +6,7 @@ export const getProducts = (categoryUrl, query) => {
         return item.name.toLowerCase().includes(query.toLowerCase());
       });
       res(filteredProducts);
-    }, 1500);
+    }, 2000);
   });
   return productPromise;
 };

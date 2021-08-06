@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import search from "../../assets/images/services/search.svg";
 import useDebounce from "../../hooks/useDebounce";
 
-const DEBOUNCE_DELAY = 500;
+const DEBOUNCE_DELAY = 1000;
 
 const Filters = (props) => {
   const { setFilterValue } = props;
@@ -19,7 +19,7 @@ const Filters = (props) => {
   }, [setFilterValue, debouncedValue]);
 
   return (
-    <section className="filters">
+    <section className="filters" data-aos={`fade-up`}>
       <div className="filters__wrapper">
         <p className="filters__title">Filters</p>
         <div className="filters__options">

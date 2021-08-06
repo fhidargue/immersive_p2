@@ -66,6 +66,12 @@
       &.active {
         opacity: 1;
       }
+
+      &.cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
     &.active {
       transform: translateY(0);

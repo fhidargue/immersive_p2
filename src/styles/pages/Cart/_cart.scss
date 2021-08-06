@@ -1,0 +1,331 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.mycart {
+  margin-top: 8rem;
+  padding-bottom: 5rem;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include media.query(">=sm") {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__title {
+    font-size: 4rem;
+
+    @include media.query(">=sm") {
+      font-size: 5rem;
+    }
+
+    @include media.query(">=xl") {
+      font-size: 5.2rem;
+    }
+  }
+}
+
+.mycart-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include media.query(">=sm") {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  @include media.query(">=lg") {
+    width: 60%;
+  }
+}
+
+.mycart-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("../../../assets/images/girl1.png");
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  &__title {
+    font-size: 2.7rem;
+    font-weight: 700;
+    padding-top: 5rem;
+
+    @include media.query(">=lg") {
+      padding-top: 0;
+    }
+  }
+
+  &__list {
+    padding-top: 3rem;
+  }
+
+  &__grandTotal {
+    font-size: 3rem;
+  }
+
+  &__btn {
+    width: rem(308px);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    padding: 1rem;
+    color: $white;
+    background-color: $black;
+    border: none;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
+      color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+  }
+
+  @include media.query(">=lg") {
+    width: 40%;
+    height: 130vh;
+  }
+}
+
+.product-checkout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1.5rem;
+
+  &__name {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  &__quantity {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  &__price {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  &__divider {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+.cart-product {
+  &__wrapper {
+    width: 20rem;
+    height: rem(570px);
+    max-height: rem(780px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    @include media.query(">=lg") {
+      width: 17rem;
+      height: rem(586px);
+    }
+  }
+
+  &__image {
+    height: rem(300px);
+    width: rem(210px);
+    margin-top: 1.5rem;
+    &.product1 {
+      border: 4px solid $pink;
+    }
+    &.product2 {
+      border: 4px solid $blue;
+    }
+    &.product3 {
+      border: 4px solid $light-green;
+    }
+    &.product4 {
+      border: 4px solid $purple;
+    }
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    padding: 0 1rem;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__fieldset {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &--division {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__input {
+    width: rem(60px);
+    height: 3.3rem;
+    font-size: 1.5rem;
+    border: 3px solid $black;
+    font-family: "Encode Sans SC", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  &__label {
+    margin-top: rem(10px);
+    font-size: 1.1rem;
+
+    @include media.query(">=sm") {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.cart-plus {
+  &__btn {
+    width: rem(55px);
+    height: 3.3rem;
+    font-size: 2rem;
+    font-family: "Encode Sans SC", sans-serif;
+    color: $white;
+    background-color: $black;
+    border: none;
+    border-right: 3px solid $black;
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
+    border-left: none;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $black;
+    }
+  }
+}
+
+.cart-minus {
+  &__btn {
+    width: rem(55px);
+    height: 3.3rem;
+    font-size: 2rem;
+    font-family: "Encode Sans SC", sans-serif;
+    color: $white;
+    background-color: $black;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-left: 3px solid $black;
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
+    border-right: none;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $black;
+    }
+  }
+}
+
+.cart-modify {
+  &__btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    color: $white;
+    background-color: $black;
+    border: none;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    &.product1 {
+      &:hover {
+        box-shadow: -0.5rem 0.5rem $pink;
+        cursor: pointer;
+      }
+    }
+    &.product2 {
+      &:hover {
+        box-shadow: -0.5rem 0.5rem $blue;
+        cursor: pointer;
+      }
+    }
+    &.product3 {
+      &:hover {
+        box-shadow: -0.5rem 0.5rem $light-green;
+        cursor: pointer;
+      }
+    }
+    &.product4 {
+      &:hover {
+        box-shadow: -0.5rem 0.5rem $purple;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.cart-remove {
+  &__btn {
+    position: absolute;
+    top: rem(15px);
+    right: rem(40px);
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    padding: 0.5rem 1rem;
+    border: 3px solid $black;
+    background-color: $white;
+    color: $black;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $red;
+      color: $white;
+    }
+  }
+}
+
+.mycart-info__bold {
+  font-size: 4rem;
+  font-weight: 700;
+}

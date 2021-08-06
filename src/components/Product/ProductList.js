@@ -12,8 +12,7 @@ import { getProducts } from "../../services/product-service";
 import Timeline from "../Timeline/Timeline";
 
 const ProductList = (props) => {
-  const { isFetching, setIsFetching, setGotProducts } =
-    useContext(InventoryContext);
+  const { isFetching, setIsFetching } = useContext(InventoryContext);
   const { categoryUrl } = useParams();
   const [productsToShow, setProductsToShow] = useState([]);
   const [filterValue, setFilterValue] = useState("");
@@ -25,13 +24,7 @@ const ProductList = (props) => {
       setProductsToShow(productsResponse);
       setIsFetching(false);
     });
-  }, [
-    filterValue,
-    setGotProducts,
-    setProductsToShow,
-    setIsFetching,
-    categoryUrl,
-  ]);
+  }, [filterValue, setProductsToShow, setIsFetching, categoryUrl]);
 
   return (
     <div className="App">
