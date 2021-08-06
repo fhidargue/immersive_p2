@@ -37,23 +37,34 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 2rem;
 
   @include media.query(">=sm") {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
+  @include media.query(">=1075px") {
+    width: 90%;
+  }
+
   @include media.query(">=lg") {
-    width: 60%;
+    justify-content: space-between;
+  }
+
+  @include media.query(">=xl") {
+    width: 100%;
+    justify-content: center;
   }
 }
 
 .mycart-info {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url("../../../assets/images/girl1.png");
+  background-image: url("../../../assets/images/girl3.png");
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
@@ -63,10 +74,6 @@
     font-size: 2.7rem;
     font-weight: 700;
     padding-top: 5rem;
-
-    @include media.query(">=lg") {
-      padding-top: 0;
-    }
   }
 
   &__list {
@@ -97,10 +104,9 @@
     }
   }
 
-  @include media.query(">=lg") {
-    width: 40%;
-    height: 130vh;
-  }
+  // @include media.query(">=lg") {
+  //   height: 130vh;
+  // }
 }
 
 .product-checkout {
@@ -109,6 +115,7 @@
   align-items: center;
   flex-direction: row;
   margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
 
   &__name {
     font-size: 1.1rem;
@@ -134,24 +141,19 @@
 
 .cart-product {
   &__wrapper {
-    width: 20rem;
-    height: rem(570px);
-    max-height: rem(780px);
+    width: 22rem;
+    height: rem(630px);
+    max-height: rem(700px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: relative;
-
-    @include media.query(">=lg") {
-      width: 17rem;
-      height: rem(586px);
-    }
   }
 
   &__image {
-    height: rem(300px);
-    width: rem(210px);
+    height: rem(340px);
+    width: rem(240px);
     margin-top: 1.5rem;
     &.product1 {
       border: 4px solid $pink;

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import $ from "jquery";
 import { useContext, useState } from "react";
 import CartContext from "../../store/Cart/CartContext";
+import InventoryContext from "../../store/Inventory/InventoryContext";
 
 const Product = (props) => {
   const { image, name, quantity, id, url, item } = props;
   const [newQuantity, setNewQuantity] = useState(quantity);
+  const { setIsFetching } = useContext(InventoryContext);
   const { cart, setCart, cartTotal, setCartTotal } = useContext(CartContext);
   console.log("cartTotal: ", cartTotal);
 
@@ -19,11 +20,18 @@ const Product = (props) => {
   };
 
   const modifyQuantity = () => {
-    const productTotal = item.quantity * item.price;
-    let middlePrice = cartTotal - productTotal;
-    item.quantity = newQuantity;
-    const newTotal = item.quantity * item.price;
-    setCartTotal(Math.round((middlePrice + newTotal) * 100) / 100);
+    setIsFetching(true);
+    const timeout = setTimeout(() => {
+      const productTotal = item.quantity * item.price;
+      let middlePrice = cartTotal - productTotal;
+      item.quantity = newQuantity;
+      const newTotal = item.quantity * item.price;
+      setCartTotal(Math.round((middlePrice + newTotal) * 100) / 100);
+      setIsFetching(false);
+    }, 1500);
+    return () => {
+      clearTimeout(timeout);
+    };
   };
 
   const removeProduct = () => {};

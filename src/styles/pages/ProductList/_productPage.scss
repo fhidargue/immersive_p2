@@ -22,6 +22,14 @@
       height: 100vh;
       flex-direction: row;
       margin-bottom: -10rem;
+      position: relative;
+    }
+  }
+
+  &__timeline {
+    @include media.query(">=md") {
+      position: fixed;
+      left: 0%;
     }
   }
 

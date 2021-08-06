@@ -9,6 +9,7 @@ import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 import $ from "jquery";
 import CartContext from "../../store/Cart/CartContext";
+import Timeline from "../Timeline/Timeline";
 
 const ProductPage = () => {
   const { productUrl } = useParams();
@@ -116,6 +117,9 @@ const ProductPage = () => {
           <section className="product-page">
             <span className="product-page__message" aria-live={`polite`}></span>
             <div className="product-page__wrapper">
+              {/* <div className="product-page__timeline">
+                <Timeline page={product.name} />
+              </div> */}
               <div className="product-page__image">
                 <div
                   style={{

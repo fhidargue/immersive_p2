@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Timeline = (props) => {
-  const { page, url } = props;
+  const { page } = props;
 
   return (
     <section className="timeline">
