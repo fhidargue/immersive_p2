@@ -3,36 +3,47 @@ import { Link, useHistory } from "react-router-dom";
 import flash from "../../assets/figures/5-small.png";
 import AuthContext from "../../store/Authorization/AuthContext";
 import Button from "../Button/Button";
-import Cookies from "js-cookie";
-import CookieContext from "../../store/Cookies/CookieContext";
 import cartIcon from "../../assets/figures/shopping-cart.svg";
 import CartContext from "../../store/Cart/CartContext";
 import { getStoredCart, getStoredTotal } from "../../services/product-service";
+import { getStoredUser } from "../../services/user-service";
 
 const NavbarMobile = () => {
-  const { setIsLogged } = useContext(AuthContext);
-  const { setEnableCookies } = useContext(CookieContext);
+  const { isLogged, setIsLogged, user, setUser } = useContext(AuthContext);
   const history = useHistory();
   const { cartContext, setCartContext, setCartTotalContext } =
     useContext(CartContext);
 
   useEffect(() => {
+    setUser(getStoredUser());
+    if (sessionStorage.getItem("user")) {
+      setIsLogged(true);
+    }
     setCartContext(getStoredCart());
     setCartTotalContext(getStoredTotal());
-  }, [setCartContext, setCartTotalContext]);
+  }, [setCartContext, setCartTotalContext, setUser, setIsLogged]);
 
   const logout = () => {
     sessionStorage.removeItem("user");
-    Cookies.remove("userData");
-    setEnableCookies(false);
     setIsLogged(false);
     history.push("/");
+  };
+
+  const login = () => {
+    history.push("/login");
   };
 
   return (
     <div className="mobile">
       <img src={flash} alt={`Blue flash`} className="mobile__image" />
       <ul className="list">
+        {isLogged && (
+          <li className="list__item--1 welcome">
+            <Link className="list__item--link welcome" to={`/`}>
+              {`Welcome, ${user.username}`}
+            </Link>
+          </li>
+        )}
         <li className="list__item--1">
           <Link className="list__item--link" to={`/products/all`}>
             Products
@@ -56,14 +67,27 @@ const NavbarMobile = () => {
             </div>
           </Link>
         </li>
-        <li className="list__item--5">
-          <Button
-            className={`list`}
-            type={`button`}
-            buttonLabel={`Logout`}
-            handleClick={logout}
-          />
-        </li>
+        {!isLogged ? (
+          <li className="list__item--5">
+            <Button
+              className={`list`}
+              type={`button`}
+              buttonLabel={`Login`}
+              handleClick={login}
+              extraClass={`register-login`}
+            />
+          </li>
+        ) : (
+          <li className="list__item--5">
+            <Button
+              className={`list`}
+              type={`button`}
+              buttonLabel={`Logout`}
+              handleClick={logout}
+              extraClass={`logout`}
+            />
+          </li>
+        )}
       </ul>
     </div>
   );

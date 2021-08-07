@@ -23,10 +23,22 @@
   &__title {
     font-size: 2.7rem;
     font-weight: 700;
+
+    &.card {
+      padding-top: 3rem;
+
+      @include media.query(">=lg") {
+        padding-top: 0;
+      }
+    }
   }
 
   &__form {
     padding-top: 1rem;
+
+    @include media.query(">=lg") {
+      width: 100%;
+    }
   }
 
   &__fieldset {
@@ -35,6 +47,13 @@
     align-items: center;
     flex-direction: column;
     border: none;
+
+    @include media.query(">=lg") {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
   }
 
   &__label {
@@ -90,6 +109,21 @@
 
   @include media.query(">=lg") {
     padding-top: 3rem;
+    width: 100%;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
 

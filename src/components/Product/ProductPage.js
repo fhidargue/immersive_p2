@@ -11,6 +11,7 @@ import $ from "jquery";
 import CartContext from "../../store/Cart/CartContext";
 import Timeline from "../Timeline/Timeline";
 import { getStoredCart, getStoredTotal } from "../../services/product-service";
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductPage = () => {
   const { productUrl } = useParams();
@@ -141,10 +142,10 @@ const ProductPage = () => {
         ) : (
           <section className="product-page">
             <span className="product-page__message" aria-live={`polite`}></span>
+            <div className="product-page__timeline">
+              <Timeline page={product.name} />
+            </div>
             <div className="product-page__wrapper">
-              {/* <div className="product-page__timeline">
-                <Timeline page={product.name} />
-              </div> */}
               <div className="product-page__image">
                 <div
                   style={{
@@ -154,6 +155,29 @@ const ProductPage = () => {
                   className="product-page__portrait"
                   id={`main-portrait`}
                 ></div>
+                <div
+                  aria-label={`${product.name} product portrait`}
+                  className="product-page__portrait desktop"
+                  id={`main-portrait-desktop`}
+                >
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: `${product.name} image`,
+                        isFluidWidth: true,
+                        src: `${backImage}`,
+                        sizes:
+                          "(min-width: 400px) 33.5vw, (min-width: 215px) 100vw, 50vw",
+                      },
+                      largeImage: {
+                        alt: `${product.name} image`,
+                        src: `${backImage}`,
+                        width: 1200,
+                        height: 1800,
+                      },
+                    }}
+                  />
+                </div>
                 <div className="product-page__options">
                   <button
                     className="product-page__options--btn"
@@ -188,33 +212,37 @@ const ProductPage = () => {
                 <form className="product-page__form">
                   <fieldset className="product-page__fieldset">
                     <div className="product-page__fieldset--division">
-                      <label
-                        className="product-page__label"
-                        value={`Quantity of the product`}
-                        htmlFor={`product${product.id}`}
-                      >
-                        Quantity
-                      </label>
-                      <Button
-                        className={`minus`}
-                        type={`button`}
-                        handleClick={removeQuantity}
-                        buttonLabel={`-`}
-                      />
-                      <input
-                        className="product-page__input"
-                        type={`number`}
-                        id={`product${product.id}`}
-                        placeholder={`1`}
-                        min={`1`}
-                        max={`100`}
-                      />
-                      <Button
-                        className={`plus`}
-                        type={`button`}
-                        handleClick={addQuantity}
-                        buttonLabel={`+`}
-                      />
+                      <div className="qty">
+                        <label
+                          className="product-page__label"
+                          value={`Quantity of the product`}
+                          htmlFor={`product${product.id}`}
+                        >
+                          Quantity
+                        </label>
+                        <div className="qty__options">
+                          <Button
+                            className={`minus`}
+                            type={`button`}
+                            handleClick={removeQuantity}
+                            buttonLabel={`-`}
+                          />
+                          <input
+                            className="product-page__input"
+                            type={`number`}
+                            id={`product${product.id}`}
+                            placeholder={`1`}
+                            min={`1`}
+                            max={`100`}
+                          />
+                          <Button
+                            className={`plus`}
+                            type={`button`}
+                            handleClick={addQuantity}
+                            buttonLabel={`+`}
+                          />
+                        </div>
+                      </div>
                     </div>
                     <Button
                       className={`product-page`}

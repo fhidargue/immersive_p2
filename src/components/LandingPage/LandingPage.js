@@ -16,6 +16,7 @@ const LandingPage = () => {
     <div className="App">
       <Header />
       <main className="main">
+        <span className="product-page__message" aria-live={`polite`}></span>
         <Banner />
         <Categories />
         <Featured />

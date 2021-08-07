@@ -1,28 +1,30 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from "react";
 
 const initialState = {
-    isLogged: false,
-    setIsLogged: () => {},
-    isFetching: false,
-    setIsFetching: () => {}
-}
+  isLogged: false,
+  setIsLogged: () => {},
+  user: "",
+  setUser: () => {},
+};
 
 const AuthContext = createContext(initialState);
 
-export const AuthProvider = ({children}) => {
-    const [isLogged, setIsLogged] = useState(initialState.isLogged);
-    const [isFetching, setIsFetching] = useState(initialState.isFetching);
+export const AuthProvider = ({ children }) => {
+  const [isLogged, setIsLogged] = useState(initialState.isLogged);
+  const [user, setUser] = useState(initialState.user);
 
-    return (
-        <AuthContext.Provider value={{
-            isLogged, 
-            setIsLogged,
-            isFetching,
-            setIsFetching
-        }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        isLogged,
+        setIsLogged,
+        user,
+        setUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthContext;

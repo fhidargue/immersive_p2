@@ -1,7 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 // import ProtectedRoute from "./components/Access/ProtectedRoute";
-// import Login from "./components/Login/Login";
+import Login from "./components/Login/Login";
 import LandingPage from "./components/LandingPage/LandingPage";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -26,7 +26,7 @@ function App() {
   return (
     <ScrollToTop>
       <Switch>
-        {/* <Route path="/" exact component={Login}/> */}
+        <Route path="/login" exact component={Login} />
         <Route path="/" exact component={LandingPage} />
         <Redirect from="/products" exact to="/products/:categoryUrl" />
         <Route path="/products/:categoryUrl" exact component={ProductList} />

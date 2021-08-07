@@ -81,6 +81,9 @@
     transition: box-shadow 0.4s ease-in-out;
 
     &.category1 {
+      &.active {
+        border: 3px solid $pink;
+      }
       &:hover {
         box-shadow: -0.5rem 0.5rem $pink;
         cursor: pointer;
@@ -88,6 +91,9 @@
     }
 
     &.category2 {
+      &.active {
+        border: 3px solid $light-green;
+      }
       &:hover {
         box-shadow: -0.5rem 0.5rem $light-green;
         cursor: pointer;
@@ -95,6 +101,9 @@
     }
 
     &.category3 {
+      &.active {
+        border: 3px solid $yellow;
+      }
       &:hover {
         box-shadow: -0.5rem 0.5rem $yellow;
         cursor: pointer;

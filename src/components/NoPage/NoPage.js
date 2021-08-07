@@ -120,7 +120,7 @@ const NoPage = (props) => {
             className="banner__image"
           />
           <div className="purchase">
-            <p className="purchase__number">404 Page not Found</p>
+            <h1 className="purchase__number">404 Page not Found</h1>
             <p className="purchase__thanks">We couldn't find this page!</p>
             <Button
               className={`purchase`}

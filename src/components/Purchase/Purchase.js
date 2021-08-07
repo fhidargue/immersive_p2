@@ -120,9 +120,9 @@ const Purchase = (props) => {
             className="banner__image"
           />
           <div className="purchase">
-            <p className="purchase__number">
+            <h1 className="purchase__number">
               Order #00{Math.floor(Math.random() * 10)}
-            </p>
+            </h1>
             <p className="purchase__thanks">Thank you for your purchase!</p>
             <Button
               className={`purchase`}

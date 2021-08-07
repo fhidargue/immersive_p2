@@ -12,7 +12,7 @@
   }
 
   &__wrapper {
-    height: 150vh;
+    height: 160vh;
     display: flex;
     justify-content: space-around;
     align-content: center;
@@ -48,16 +48,23 @@
       margin-top: rem(6px);
     }
 
-    @include media.query(">=xl") {
+    @include media.query(">=1330px") {
       width: 45%;
     }
 
-    @include media.query(">=1600px") {
+    @include media.query(">=xl") {
       width: 40%;
     }
 
+    @include media.query(">=1500px") {
+      width: 35%;
+    }
+
+    @include media.query(">=1700px") {
+      width: 30%;
+    }
+
     @include media.query(">=1800px") {
-      width: 38%;
       margin-left: rem(-24px);
     }
   }
@@ -71,25 +78,37 @@
     background-position: center;
     transition: background-size 1s ease-in-out;
 
-    &:hover {
-      background-size: 150%;
-      background-position: center;
-      cursor: zoom-in;
-    }
+    // &:hover {
+    //   background-size: 150%;
+    //   background-position: center;
+    //   cursor: zoom-in;
+    // }
 
     @include media.query(">=md") {
       margin-top: 0;
       width: 100%;
-      height: 100%;
+      height: 87%;
+      display: none;
     }
 
     @include media.query(">=lg") {
       width: 100%;
     }
+
+    &.desktop {
+      display: none;
+
+      @include media.query(">=md") {
+        display: block;
+      }
+    }
   }
 
   &__options {
     margin-top: rem(5px);
+    background-color: $white;
+    width: 100%;
+    z-index: 100;
     &--image {
       width: rem(170px);
       height: rem(170px);
@@ -107,16 +126,12 @@
       @include media.query(">=md") {
         width: rem(100px);
         height: rem(100px);
+        margin-top: rem(5px);
       }
 
       @include media.query(">=lg") {
         width: rem(90px);
         height: rem(90px);
-      }
-
-      @include media.query(">=xl") {
-        width: rem(80px);
-        height: rem(80px);
       }
     }
 
@@ -124,6 +139,10 @@
       background-color: transparent;
       border: none;
       padding: 0;
+    }
+
+    @include media.query(">=lg") {
+      height: rem(120px);
     }
   }
 
@@ -216,7 +235,6 @@
       justify-content: center;
       align-content: center;
       flex-direction: row;
-      position: relative;
     }
   }
 
@@ -238,7 +256,8 @@
     }
 
     @include media.query(">=sm") {
-      margin-top: 0;
+      margin-top: rem(30px);
+      height: 80%;
     }
   }
 
@@ -259,8 +278,6 @@
   }
 
   &__label {
-    position: absolute;
-    top: rem(-30px);
     font-size: 1.1rem;
 
     @include media.query(">=sm") {
@@ -293,6 +310,13 @@
 
   @include media.query(">=md") {
     margin-bottom: 8rem;
+  }
+
+  &__timeline {
+    width: 100%;
+    margin-top: rem(8px);
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -352,5 +376,16 @@
     @include media.query(">=sm") {
       height: 3.85rem;
     }
+  }
+}
+
+.qty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__options {
+    display: flex;
   }
 }

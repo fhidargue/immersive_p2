@@ -9,9 +9,7 @@ const ProductCart = (props) => {
   const { image, name, quantity, id, url, item } = props;
   const [newQuantity, setNewQuantity] = useState(quantity);
   const { setIsFetching } = useContext(InventoryContext);
-  const { cartContext, setCartContext, cartTotalContext, setCartTotalContext } =
-    useContext(CartContext);
-  // console.log("cartTotal: ", cartTotal);
+  const { setCartContext } = useContext(CartContext);
 
   let cart = JSON.parse(localStorage.getItem("cart"));
   let cartTotal = localStorage.getItem("cartTotal");
