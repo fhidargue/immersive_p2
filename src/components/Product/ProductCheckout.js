@@ -1,5 +1,5 @@
 const ProductCheckout = (props) => {
-  const { name, price, id, item, quantity } = props;
+  const { name, price, quantity } = props;
 
   return (
     <section className="product-checkout" key={name}>

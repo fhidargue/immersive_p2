@@ -49,3 +49,42 @@ export const getProduct = (productUrl) => {
   });
   return productPromise;
 };
+
+const CART_KEY = "cart";
+
+export const getStoredCart = () => {
+  const storedCartJson = localStorage.getItem(CART_KEY) || "";
+  let storedCart;
+  try {
+    storedCart = JSON.parse(storedCartJson);
+  } catch (e) {
+    storedCart = null;
+  }
+
+  if (!Array.isArray(storedCart)) {
+    storedCart = [];
+  }
+
+  return storedCart;
+};
+
+const CART_TOTAL_KEY = "cartTotal";
+
+export const getStoredTotal = () => {
+  const storedTotalData = localStorage.getItem(CART_TOTAL_KEY) || 0;
+  let storedTotal;
+  try {
+    storedTotal = storedTotalData;
+  } catch (e) {
+    storedTotal = 0;
+  }
+
+  return storedTotal;
+};
+
+export const roundAccurately = (number, decimalPlaces) => {
+  let newNumber = Number(
+    Math.round(number + "e" + decimalPlaces) + "e-" + decimalPlaces
+  );
+  return newNumber;
+};

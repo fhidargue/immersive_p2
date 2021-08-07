@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 
     @include media.query(">=sm") {
       flex-direction: row;
@@ -28,6 +29,28 @@
 
     @include media.query(">=xl") {
       font-size: 5.2rem;
+    }
+  }
+
+  &__message {
+    display: none;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border: 3px solid $black;
+    background-color: $white;
+    z-index: 300;
+    padding: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    &.error {
+      color: $red;
+    }
+
+    &.success {
+      color: $normal-green;
     }
   }
 }
@@ -47,11 +70,6 @@
   @include media.query(">=1075px") {
     width: 90%;
   }
-
-  @include media.query(">=lg") {
-    justify-content: space-between;
-  }
-
   @include media.query(">=xl") {
     width: 100%;
     justify-content: center;
@@ -209,7 +227,7 @@
   }
 
   &__label {
-    margin-top: rem(10px);
+    margin-bottom: rem(10px);
     font-size: 1.1rem;
 
     @include media.query(">=sm") {

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../services/product-service";
 import InventoryContext from "../../store/Inventory/InventoryContext";
@@ -10,18 +10,21 @@ import Spinner from "../Spinner/Spinner";
 import $ from "jquery";
 import CartContext from "../../store/Cart/CartContext";
 import Timeline from "../Timeline/Timeline";
+import { getStoredCart, getStoredTotal } from "../../services/product-service";
 
 const ProductPage = () => {
   const { productUrl } = useParams();
   const { product, setProduct, isFetching, setIsFetching } =
     useContext(InventoryContext);
-  const { cart, setCart, cartTotal, setCartTotal } = useContext(CartContext);
+  const { setCartContext } = useContext(CartContext);
+  const [backImage, setBackImage] = useState("");
 
   useEffect(() => {
     document.title = `Remotion - Product Page`;
     setIsFetching(true);
     const timeout = setTimeout(() => {
       getProduct(productUrl).then((productResponse) => {
+        setBackImage(productResponse.first_image);
         setProduct(productResponse);
         setIsFetching(false);
       });
@@ -33,16 +36,25 @@ const ProductPage = () => {
   }, [setProduct, productUrl, setIsFetching]);
 
   const firstPortrait = () => {
-    $("#main-portrait").css("background-image", `url(${product.first_image})`);
+    /**
+     * On click, change the image main portrait to this first element
+     */
+    setBackImage(product.first_image);
   };
 
   const secondPortrait = () => {
-    $("#main-portrait").css("background-image", `url(${product.second_image})`);
+    /**
+     * On click, change the image main portrait to this second element
+     */
+    setBackImage(product.second_image);
   };
 
   const addToCart = () => {
     let value = $(".product-page__input").val();
     if (value === "" || value < 1) {
+      /**
+       * Error in product quantity message
+       */
       let message = $(".product-page__message");
       message.show();
       message.addClass("error");
@@ -56,13 +68,20 @@ const ProductPage = () => {
       let qty = $(".product-page__input").val();
       product.quantity = parseInt(qty);
       let total = product.price * product.quantity;
-      setCartTotal(Math.round((cartTotal + total) * 100) / 100);
-      let array = [...cart, product];
-      setCart(array);
+      const cartTotal = getStoredTotal();
+      let newTotal = Math.round((parseFloat(cartTotal) + total) * 100) / 100;
+      localStorage.setItem("cartTotal", newTotal);
+      const newCart = getStoredCart();
+      let array = [...newCart, product];
+      setCartContext(array);
+      localStorage.setItem("cart", JSON.stringify(array));
+      /**
+       * Success in adding this product to the cart message
+       */
       let message = $(".product-page__message");
       message.show();
       message.addClass("success");
-      message.text(`${product.name} was added to your cart!`);
+      message.text(`${product.name}, was added to your cart!`);
       setTimeout(() => {
         message.hide();
         message.removeClass("success");
@@ -74,6 +93,9 @@ const ProductPage = () => {
   const removeQuantity = () => {
     let value = $(".product-page__input").val();
     if (value === "" || value < 1) {
+      /**
+       * Error in product quantity message
+       */
       let message = $(".product-page__message");
       message.show();
       message.addClass("error");
@@ -92,6 +114,9 @@ const ProductPage = () => {
   const addQuantity = () => {
     let value = $(".product-page__input").val();
     if (value >= 100) {
+      /**
+       * Error in product quantity message
+       */
       let message = $(".product-page__message");
       message.show();
       message.addClass("error");
@@ -123,7 +148,7 @@ const ProductPage = () => {
               <div className="product-page__image">
                 <div
                   style={{
-                    backgroundImage: `url(${product.first_image})`,
+                    backgroundImage: `url(${backImage})`,
                   }}
                   aria-label={`${product.name} product portrait`}
                   className="product-page__portrait"
@@ -208,7 +233,14 @@ const ProductPage = () => {
       <Footer />
     </div>
   ) : (
-    <Spinner />
+    <div className="App">
+      <Header />
+      <main className="main">
+        <Spinner />
+        <Newsletter />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

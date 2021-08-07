@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import CartContext from "../../store/Cart/CartContext";
+// import CartContext from "../../store/Cart/CartContext";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Newsletter from "../Newsletter/Newsletter";
@@ -10,12 +10,15 @@ import Timeline from "../Timeline/Timeline";
 import Button from "../Button/Button";
 import ProductCheckout from "../Product/ProductCheckout";
 import InventoryContext from "../../store/Inventory/InventoryContext";
-// import InventoryContext from "../../store/Inventory/InventoryContext";
+import { useHistory } from "react-router-dom";
+import $ from "jquery";
 
 const Cart = () => {
-  const { cart, cartTotal } = useContext(CartContext);
   const { isFetching, setIsFetching } = useContext(InventoryContext);
-  console.log("isFetching: ", isFetching);
+  const history = useHistory();
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cartTotal = localStorage.getItem("cartTotal") || 0;
 
   useEffect(() => {
     document.title = `Remotion - My Cart`;
@@ -29,71 +32,123 @@ const Cart = () => {
     };
   }, [setIsFetching]);
 
-  const toCheckout = () => {};
+  const toCheckout = () => {
+    if (parseInt(cartTotal) === 0) {
+      let message = $(".mycart__message");
+      message.show();
+      message.addClass("error");
+      message.text("You must have at least one product to Checkout.");
+      setTimeout(() => {
+        message.hide();
+        message.removeClass("error");
+        message.text("");
+      }, 5000);
+    } else {
+      history.push("/checkout");
+    }
+  };
 
   return cart ? (
     <div className="App">
       <Header />
       <main className="main">
-        <span className="product-page__message" aria-live={`polite`}></span>
         <section className="mycart">
-          <h1 className="mycart__title">My Cart</h1>
+          <h1 className="mycart__title" data-aos="zoom-in">
+            My Cart
+          </h1>
           <Timeline page={`My Cart`} url={`shopping-cart`} />
-          {isFetching ? (
-            <Spinner />
-          ) : (
-            <div className="mycart__wrapper">
-              <div className="mycart-info">
-                <div className="mycart-info__title">Products to Buy</div>
-                <div className="mycart-info__list">
+          <div className="mycart__wrapper">
+            <span className="mycart__message" aria-live={`polite`}></span>
+            <div className="mycart-info">
+              {isFetching ? (
+                <Spinner />
+              ) : (
+                <>
+                  <div className="mycart-info__title">Products to Buy</div>
+                  <div className="mycart-info__list">
+                    {cart.map((item) => {
+                      return (
+                        <ProductCheckout
+                          key={item.name}
+                          name={item.name}
+                          quantity={item.quantity}
+                          id={item.id}
+                          price={item.price}
+                          item={item}
+                        />
+                      );
+                    })}
+                  </div>
+                  <p className="mycart-info__grandTotal">
+                    Grand Total:{" "}
+                    <span className="mycart-info__bold">${cartTotal}</span>
+                  </p>
+                  <Button
+                    className={`mycart-info`}
+                    type={`button`}
+                    handleClick={toCheckout}
+                    buttonLabel={`Proceed to Checkout`}
+                  />
+                </>
+              )}
+            </div>
+            {isFetching ? (
+              <Spinner />
+            ) : (
+              <>
+                <div className="mycart-products">
                   {cart.map((item) => {
                     return (
-                      <ProductCheckout
+                      <ProductCart
                         key={item.name}
+                        image={item.first_image}
                         name={item.name}
                         quantity={item.quantity}
                         id={item.id}
-                        price={item.price}
+                        url={item.url}
                         item={item}
                       />
                     );
                   })}
                 </div>
-                <p className="mycart-info__grandTotal">
-                  Grand Total:{" "}
-                  <span className="mycart-info__bold">${cartTotal}</span>
-                </p>
-                <Button
-                  className={`mycart-info`}
-                  type={`button`}
-                  handleClick={toCheckout}
-                  buttonLabel={`Proceed to Checkout`}
-                />
-              </div>
-              <div className="mycart-products">
-                {cart.map((item) => {
-                  return (
-                    <ProductCart
-                      key={item.name}
-                      image={item.first_image}
-                      name={item.name}
-                      quantity={item.quantity}
-                      id={item.id}
-                      url={item.url}
-                      item={item}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          )}
+              </>
+            )}
+          </div>
         </section>
         <Newsletter />
       </main>
       <Footer />
     </div>
   ) : (
-    <Spinner />
+    <div className="App">
+      <Header />
+      <main className="main">
+        <section className="mycart">
+          <h1 className="mycart__title" data-aos="zoom-in">
+            My Cart
+          </h1>
+          <div className="mycart__wrapper">
+            <span className="mycart__message" aria-live={`polite`}></span>
+            <div className="mycart-info">
+              <div className="mycart-info__title">Products to Buy</div>
+              <div className="mycart-info__list"></div>
+              <p className="mycart-info__grandTotal">
+                Grand Total:{" "}
+                <span className="mycart-info__bold">${cartTotal}</span>
+              </p>
+              <Button
+                className={`mycart-info`}
+                type={`button`}
+                handleClick={toCheckout}
+                buttonLabel={`Proceed to Checkout`}
+              />
+            </div>
+          </div>
+        </section>
+        <Newsletter />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

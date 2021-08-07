@@ -10,6 +10,9 @@ import ProductList from "./components/Product/ProductList";
 import ProductPage from "./components/Product/ProductPage";
 import ScrollToTop from "./hooks/ScrollToTop";
 import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout/Checkout";
+import Purchase from "./components/Purchase/Purchase";
+import NoPage from "./components/NoPage/NoPage";
 
 function App() {
   useEffect(() => {
@@ -28,7 +31,10 @@ function App() {
         <Redirect from="/products" exact to="/products/:categoryUrl" />
         <Route path="/products/:categoryUrl" exact component={ProductList} />
         <Route path="/product/:productUrl" exact component={ProductPage} />
-        <Route path="/shopping-cart" exact component={Cart} />
+        <Route path="/shopping-cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
+        <Route path="/purchase" component={Purchase} />
+        <Route path="*" component={NoPage} />
       </Switch>
     </ScrollToTop>
   );

@@ -53,7 +53,7 @@
 
   &__item {
     &--link {
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-decoration: none;
       color: #fff;
       transition: opacity 2.3s ease-in-out, color 0.3s ease-in-out;
@@ -71,6 +71,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+      @include media.query(">=420px") {
+        font-size: 3rem;
       }
     }
     &.active {

@@ -1,0 +1,111 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.checkout {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include media.query(">=lg") {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.customer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__title {
+    font-size: 2.7rem;
+    font-weight: 700;
+  }
+
+  &__form {
+    padding-top: 1rem;
+  }
+
+  &__fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+  }
+
+  &__label {
+    font-size: 1.5rem;
+    padding-top: 1.2rem;
+    padding-bottom: 0.6rem;
+  }
+
+  &__input {
+    border: 3px solid $black;
+    background-color: $white;
+    height: rem(50px);
+    width: rem(300px);
+    font-size: 1.5rem;
+    font-family: "Encode Sans SC", sans-serif;
+    z-index: 100;
+    padding-left: 1rem;
+
+    &::placeholder {
+      color: rgb(187, 187, 187);
+    }
+
+    @include media.query(">=500px") {
+      width: rem(400px);
+    }
+
+    @include media.query(">=900px") {
+      width: rem(500px);
+    }
+
+    @include media.query(">=lg") {
+      height: rem(60px);
+    }
+  }
+
+  &__btn {
+    width: rem(300px);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    padding: 1rem;
+    color: $white;
+    background-color: $black;
+    border: none;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+  }
+
+  @include media.query(">=lg") {
+    padding-top: 3rem;
+  }
+}
+
+.order {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-image: url("../../../assets/images/checkout2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  &__title {
+    font-size: 3rem;
+  }
+
+  &__amount {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+}

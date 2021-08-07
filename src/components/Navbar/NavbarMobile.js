@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import flash from "../../assets/figures/5-small.png";
 import AuthContext from "../../store/Authorization/AuthContext";
@@ -7,12 +7,19 @@ import Cookies from "js-cookie";
 import CookieContext from "../../store/Cookies/CookieContext";
 import cartIcon from "../../assets/figures/shopping-cart.svg";
 import CartContext from "../../store/Cart/CartContext";
+import { getStoredCart, getStoredTotal } from "../../services/product-service";
 
 const NavbarMobile = () => {
   const { setIsLogged } = useContext(AuthContext);
   const { setEnableCookies } = useContext(CookieContext);
   const history = useHistory();
-  const { cart } = useContext(CartContext);
+  const { cartContext, setCartContext, setCartTotalContext } =
+    useContext(CartContext);
+
+  useEffect(() => {
+    setCartContext(getStoredCart());
+    setCartTotalContext(getStoredTotal());
+  }, [setCartContext, setCartTotalContext]);
 
   const logout = () => {
     sessionStorage.removeItem("user");
@@ -45,7 +52,7 @@ const NavbarMobile = () => {
             />
             My Cart
             <div className="cart__products--mobile">
-              <span className="cart__productsNumber--mobile">{`${cart.length}`}</span>
+              <span className="cart__productsNumber--mobile">{`${cartContext.length}`}</span>
             </div>
           </Link>
         </li>

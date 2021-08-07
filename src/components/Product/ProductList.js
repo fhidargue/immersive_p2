@@ -31,7 +31,9 @@ const ProductList = (props) => {
       <Header />
       <main className="main">
         <section className="product-list">
-          <h1 className="product-list__title">Product List</h1>
+          <h1 className="product-list__title" data-aos="zoom-in">
+            Product List
+          </h1>
           <Timeline page={`Product List`} url={`products/all`} />
           <Filters setFilterValue={setFilterValue} />
           <div className="product-list__wrapper">

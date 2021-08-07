@@ -90,24 +90,34 @@ $colors: #ff1f69, #fff, #ccc;
 .cart {
   &__products {
     margin-left: rem(20px);
+    background-color: $yellow;
+    width: rem(40px);
+    height: rem(40px);
+    border-radius: 50%;
+    position: relative;
 
     &Number {
-      background-color: $yellow;
-      padding: 0.4rem 0.9rem;
-      border-radius: 50%;
+      position: absolute;
+      top: 19%;
+      left: 34%;
       color: $black;
 
       &--mobile {
         font-size: 2rem;
-        background-color: $yellow;
-        padding: 0.3rem 1.09rem;
-        border-radius: 50%;
+        position: absolute;
+        top: 10%;
+        left: 28%;
         color: $black;
       }
     }
 
     &--mobile {
       margin-left: rem(20px);
+      background-color: $yellow;
+      width: rem(50px);
+      height: rem(50px);
+      border-radius: 50%;
+      position: relative;
     }
   }
 }

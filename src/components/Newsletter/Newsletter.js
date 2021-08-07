@@ -1,6 +1,6 @@
 const Newsletter = () => {
   return (
-    <section className="newsletter" data-aos={`fade-up`}>
+    <section className="newsletter">
       <div className="newsletter__wrapper">
         <p className="newsletter__title">Newsletter</p>
         <form className="form">

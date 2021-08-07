@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../store/Authorization/AuthContext";
 import CookieContext from "../../store/Cookies/CookieContext";
@@ -6,12 +6,19 @@ import Cookies from "js-cookie";
 import Button from "../Button/Button";
 import cartIcon from "../../assets/figures/shopping-cart.svg";
 import CartContext from "../../store/Cart/CartContext";
+import { getStoredCart, getStoredTotal } from "../../services/product-service";
 
 const Navbar = () => {
   const { isLogged, setIsLogged } = useContext(AuthContext);
   const { setEnableCookies } = useContext(CookieContext);
-  const { cart } = useContext(CartContext);
+  const { cartContext, setCartContext, setCartTotalContext } =
+    useContext(CartContext);
   const history = useHistory();
+
+  useEffect(() => {
+    setCartContext(getStoredCart());
+    setCartTotalContext(getStoredTotal());
+  }, [setCartContext, setCartTotalContext]);
 
   const logout = () => {
     sessionStorage.removeItem("user");
@@ -42,7 +49,7 @@ const Navbar = () => {
           />
           My Cart
           <div className="cart__products">
-            <span className="cart__productsNumber">{`${cart.length}`}</span>
+            <span className="cart__productsNumber">{`${cartContext.length}`}</span>
           </div>
         </Link>
       </li>
