@@ -34,22 +34,17 @@
   position: fixed;
   top: 0;
   width: 100vw;
+
+  &__logo {
+    &:focus {
+      border: 3px solid $yellow;
+      outline: none;
+    }
+  }
 }
 
 .App-link {
   color: #61dafb;
-}
-
-::-webkit-scrollbar {
-  background-color: $black;
-  width: rem(9px);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: $white;
-  border: 2px solid $black;
-  border-radius: 20px;
-  width: 5px !important;
 }
 
 @keyframes App-logo-spin {

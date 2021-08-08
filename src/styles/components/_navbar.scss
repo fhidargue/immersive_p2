@@ -6,7 +6,7 @@ $colors: #ff1f69, #fff, #ccc;
   display: none;
   justify-content: flex-start;
   align-items: center;
-  width: 50vw;
+  width: 61vw;
   padding-left: 0;
   &__item {
     font-size: 1.2rem;
@@ -15,7 +15,6 @@ $colors: #ff1f69, #fff, #ccc;
     &--link {
       text-decoration: none;
       color: #fff;
-      // text-transform: uppercase;
       font-weight: 700;
       position: relative;
 
@@ -24,7 +23,7 @@ $colors: #ff1f69, #fff, #ccc;
         display: block;
         height: rem(6px);
         position: absolute;
-        left: 25%;
+        left: 50%;
         bottom: rem(-10px);
         background: #fffc22;
         transition: width 0.5s ease 0s, left 0.5s ease 0s;
@@ -35,6 +34,18 @@ $colors: #ff1f69, #fff, #ccc;
         width: 100%;
         left: 0;
       }
+
+      &.cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:focus {
+        border: 3px solid $yellow;
+        outline: none;
+        padding: 0.5rem;
+      }
     }
   }
   @include media.query(">=md") {
@@ -42,28 +53,106 @@ $colors: #ff1f69, #fff, #ccc;
     justify-content: space-evenly;
   }
   &__btn {
-    font-size: 1.2rem;
+    font-size: rem(20px);
     font-weight: 700;
     font-family: "Encode Sans SC", sans-serif;
-    padding: 0.5rem;
-    margin-top: rem(2px);
     color: $white;
     background-color: transparent;
-    border: 3px solid $white;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    border: none;
+    position: relative;
+    transition: box-shadow 0.4s ease-in-out;
     &:hover {
-      box-shadow: -0.5rem 0.5rem $light-green;
       cursor: pointer;
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: rem(6px);
+      position: absolute;
+      left: 50%;
+      bottom: rem(-10px);
+      background: #fffc22;
+      transition: width 0.5s ease 0s, left 0.5s ease 0s;
+      width: 0;
+    }
+
+    &:hover::after {
+      width: 100%;
+      left: 0;
     }
     &::before {
       content: "\2B9c";
       color: $yellow;
       margin-right: rem(5px);
     }
+
+    &:focus {
+      border: 3px solid $yellow;
+      outline: none;
+      padding: 0.5rem;
+    }
   }
 
   @include media.query(">=md") {
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 80vw;
+  }
+
+  @include media.query(">=lg") {
+    width: 70vw;
+  }
+
+  @include media.query(">=xl") {
+    width: 61vw;
+  }
+}
+
+.cart-icon {
+  filter: invert(1);
+  width: rem(30px);
+  height: rem(30px);
+  margin-right: rem(10px);
+
+  &--mobile {
+    filter: invert(1);
+    width: rem(50px);
+    height: rem(50px);
+    margin-right: rem(20px);
+  }
+}
+
+.cart {
+  &__products {
+    margin-left: rem(20px);
+    background-color: $yellow;
+    width: rem(40px);
+    height: rem(40px);
+    border-radius: 50%;
+    position: relative;
+
+    &Number {
+      position: absolute;
+      top: rem(7px);
+      left: rem(14px);
+      color: $black;
+
+      &--mobile {
+        font-size: 2rem;
+        position: absolute;
+        top: rem(4px);
+        left: rem(16px);
+        color: $black;
+      }
+    }
+
+    &--mobile {
+      margin-left: rem(20px);
+      background-color: $yellow;
+      width: rem(50px);
+      height: rem(50px);
+      border-radius: 50%;
+      position: relative;
+    }
   }
 }

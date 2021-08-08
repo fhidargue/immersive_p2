@@ -4,8 +4,12 @@ const Button = (props) => {
   const { handleClick, buttonLabel, type, className, extraClass } = props;
 
   return (
-    <button className={`${className}__btn ${extraClass}`} type={type} onClick={handleClick}>
-      {buttonLabel}
+    <button
+      className={`${className}__btn ${extraClass}`}
+      type={type}
+      onClick={handleClick}
+    >
+      <span className="btn__label">{buttonLabel}</span>
     </button>
   );
 };
@@ -20,7 +24,7 @@ Button.propTypes = {
 Button.defaultProps = {
   buttonLabel: "",
   type: "button",
-  extraClass: ""
+  extraClass: "",
 };
 
 export default Button;

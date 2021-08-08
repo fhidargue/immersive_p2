@@ -1,0 +1,67 @@
+@use "../../abstracts/breakpoints" as media;
+@use "../../abstracts/functions";
+@use "../../abstracts/variables";
+
+.purchase {
+  height: 30vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
+  &__number {
+    font-size: 3rem;
+    color: $white;
+
+    @include media.query(">=lg") {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__thanks {
+    font-size: 2rem;
+    color: $white;
+
+    @include media.query(">=lg") {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__btn {
+    width: rem(190px);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Encode Sans SC", sans-serif;
+    padding: 1rem;
+    color: $white;
+    background-color: $black;
+    border: 3px solid $white;
+    z-index: 200;
+    transition: box-shadow 0.4s ease-in-out;
+    &:hover {
+      box-shadow: -0.5rem 0.5rem $pink;
+      cursor: pointer;
+    }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
+    }
+  }
+}
+
+.pink {
+  color: $pink;
+}
+
+.green {
+  color: $light-green;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.blue {
+  color: $blue;
+}

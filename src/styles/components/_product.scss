@@ -4,26 +4,55 @@
 
 .product {
   &__wrapper {
-    width: rem(400px);
-    max-height: rem(700px);
+    width: rem(368px);
+    max-height: rem(780px);
     margin-top: 3rem;
-    // border: 3px solid $black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
   &__image {
-    height: rem(500px);
+    height: rem(456px);
     width: rem(350px);
-    margin-top: 1.5rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-size 1s ease-in-out;
+
+    &:hover {
+      background-size: 130%;
+      background-position: center;
+      cursor: pointer;
+    }
+
     &.product1 {
       border: 4px solid $pink;
+      &:focus {
+        border: 4px solid $pink;
+        outline: none;
+      }
     }
     &.product2 {
       border: 4px solid $blue;
+      &:focus {
+        border: 4px solid $blue;
+        outline: none;
+      }
     }
     &.product3 {
       border: 4px solid $light-green;
+      &:focus {
+        border: 4px solid $light-green;
+        outline: none;
+      }
     }
     &.product4 {
       border: 4px solid $purple;
+      &:focus {
+        border: 4px solid $purple;
+        outline: none;
+      }
     }
   }
   &__name {
@@ -39,6 +68,7 @@
   }
 
   &__btn {
+    width: rem(250px);
     font-size: 1.5rem;
     font-weight: 700;
     font-family: "Encode Sans SC", sans-serif;
@@ -46,11 +76,15 @@
     color: $white;
     background-color: $black;
     border: none;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out;
     &.product1 {
       &:hover {
         box-shadow: -0.5rem 0.5rem $pink;
         cursor: pointer;
+      }
+      &:focus {
+        border: 4px solid $pink;
+        outline: none;
       }
     }
     &.product2 {
@@ -58,11 +92,19 @@
         box-shadow: -0.5rem 0.5rem $blue;
         cursor: pointer;
       }
+      &:focus {
+        border: 4px solid $blue;
+        outline: none;
+      }
     }
     &.product3 {
       &:hover {
         box-shadow: -0.5rem 0.5rem $light-green;
         cursor: pointer;
+      }
+      &:focus {
+        border: 4px solid $light-green;
+        outline: none;
       }
     }
     &.product4 {
@@ -70,6 +112,58 @@
         box-shadow: -0.5rem 0.5rem $purple;
         cursor: pointer;
       }
+      &:focus {
+        border: 4px solid $purple;
+        outline: none;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $black;
+    transition: color 0.4s ease-in-out;
+
+    &.product1 {
+      &:hover {
+        color: $pink;
+      }
+      &:focus {
+        border: 3px solid $pink;
+        outline: none;
+      }
+    }
+    &.product2 {
+      &:hover {
+        color: $blue;
+      }
+      &:focus {
+        border: 3px solid $blue;
+        outline: none;
+      }
+    }
+    &.product3 {
+      &:hover {
+        color: $light-green;
+      }
+      &:focus {
+        border: 3px solid $light-green;
+        outline: none;
+      }
+    }
+    &.product4 {
+      &:hover {
+        color: $purple;
+      }
+      &:focus {
+        border: 3px solid $purple;
+        outline: none;
+      }
+    }
+
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
     }
   }
 }

@@ -1,36 +1,96 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import flash from "../../assets/figures/5-small.png";
 import AuthContext from "../../store/Authorization/AuthContext";
 import Button from "../Button/Button";
-import Cookies from "js-cookie";
-import CookieContext from "../../store/Cookies/CookieContext";
+import cartIcon from "../../assets/figures/shopping-cart.svg";
+import CartContext from "../../store/Cart/CartContext";
+import { getStoredCart, getStoredTotal } from "../../services/product-service";
+import { getStoredUser } from "../../services/user-service";
 
 const NavbarMobile = () => {
-    const {setIsLogged} = useContext(AuthContext);
-    const {setEnableCookies} = useContext(CookieContext);
-    const history = useHistory();
+  const { isLogged, setIsLogged, user, setUser } = useContext(AuthContext);
+  const history = useHistory();
+  const { cartContext, setCartContext, setCartTotalContext } =
+    useContext(CartContext);
 
-    const logout = () => {
-        sessionStorage.removeItem('user');
-        Cookies.remove('userData');
-        setEnableCookies(false);
-        setIsLogged(false);
-        history.push('/');
+  useEffect(() => {
+    setUser(getStoredUser());
+    if (sessionStorage.getItem("user")) {
+      setIsLogged(true);
     }
+    setCartContext(getStoredCart());
+    setCartTotalContext(getStoredTotal());
+  }, [setCartContext, setCartTotalContext, setUser, setIsLogged]);
 
-    return (
-        <div className="mobile">
-            <img src={flash} alt={`Blue flash`} className="mobile__image"/>
-            <ul className="list">
-                <li className="list__item--1"><Link className="list__item--link" to={`/`}>Work</Link></li>
-                <li className="list__item--2"><Link className="list__item--link" to={`/`}>Services</Link></li>
-                <li className="list__item--3"><Link className="list__item--link" to={`/`}>About</Link></li>
-                <li className="list__item--4"><Link className="list__item--link" to={`/`}>Careers</Link></li>
-                <li className="list__item--5"><Button className={`list`} type={`button`} buttonLabel={`Logout`} handleClick={logout}/></li>
-            </ul>
-        </div>
-    )
-}
+  const logout = () => {
+    sessionStorage.removeItem("user");
+    setIsLogged(false);
+    history.push("/");
+  };
+
+  const login = () => {
+    history.push("/login");
+  };
+
+  return (
+    <div className="mobile">
+      <img src={flash} alt={`Blue flash`} className="mobile__image" />
+      <ul className="list">
+        {isLogged && (
+          <li className="list__item--1 welcome">
+            <Link className="list__item--link welcome" to={`/`}>
+              {`Welcome, ${user.username}`}
+            </Link>
+          </li>
+        )}
+        <li className="list__item--1">
+          <Link className="list__item--link" to={`/products/all`}>
+            Products
+          </Link>
+        </li>
+        <li className="list__item--2">
+          <Link className="list__item--link" to={`/products/clearance`}>
+            Clearance
+          </Link>
+        </li>
+        <li className="list__item--3">
+          <Link className="list__item--link cart" to={`/shopping-cart`}>
+            <img
+              src={cartIcon}
+              alt={`Shopping Cart icon`}
+              className="cart-icon--mobile"
+            />
+            My Cart
+            <div className="cart__products--mobile">
+              <span className="cart__productsNumber--mobile">{`${cartContext.length}`}</span>
+            </div>
+          </Link>
+        </li>
+        {!isLogged ? (
+          <li className="list__item--5">
+            <Button
+              className={`list`}
+              type={`button`}
+              buttonLabel={`Login`}
+              handleClick={login}
+              extraClass={`register-login`}
+            />
+          </li>
+        ) : (
+          <li className="list__item--5">
+            <Button
+              className={`list`}
+              type={`button`}
+              buttonLabel={`Logout`}
+              handleClick={logout}
+              extraClass={`logout`}
+            />
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+};
 
 export default NavbarMobile;

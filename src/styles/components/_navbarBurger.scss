@@ -56,6 +56,9 @@ $height-line: 8px;
   &:hover {
     cursor: pointer;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 .line {

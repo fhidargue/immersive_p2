@@ -1,0 +1,101 @@
+@use "../abstracts/breakpoints" as media;
+@use "../abstracts/functions";
+@use "../abstracts/variables";
+
+.rc-pagination {
+  width: 100%;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+
+  & li {
+    list-style: none;
+  }
+
+  &-item {
+    &:hover {
+      cursor: pointer;
+      color: $black;
+    }
+
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
+    }
+  }
+
+  &-item-link {
+    width: 100%;
+    height: 100%;
+    border: 3px solid $black;
+    background-color: $black;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: solid $blue;
+    }
+  }
+
+  &-item {
+    font-size: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: rgb(187, 187, 187);
+
+    &-active {
+      font-size: 2.5rem;
+      color: $black;
+    }
+  }
+
+  &-prev {
+    width: rem(50px);
+    height: rem(50px);
+    position: relative;
+
+    &::before {
+      position: absolute;
+      color: $white;
+      top: rem(2px);
+      left: rem(13px);
+      content: "⮜";
+      font-size: 2rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: solid $blue;
+    }
+  }
+
+  &-next {
+    width: rem(50px);
+    height: rem(50px);
+    position: relative;
+
+    &::before {
+      position: absolute;
+      color: $white;
+      top: rem(2px);
+      left: rem(13px);
+      content: "⮞";
+      font-size: 2rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: solid $blue;
+    }
+  }
+}

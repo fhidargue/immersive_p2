@@ -18,6 +18,8 @@
 @import "./components/cookies";
 @import "./components/product";
 @import "./components/footer";
+@import "./components/timeline";
+@import "./components/pagination";
 
 // PAGES
 @import "./pages/Login/login";
@@ -26,3 +28,9 @@
 @import "./pages/LandingPage/featured";
 @import "./pages/LandingPage/services";
 @import "./pages/LandingPage/newsletter";
+@import "./pages/ProductList/productList";
+@import "./pages/ProductList/filters";
+@import "./pages/ProductList/productPage";
+@import "./pages/Cart/cart";
+@import "./pages/Checkout/checkout";
+@import "./pages/Purchase/purchase";
