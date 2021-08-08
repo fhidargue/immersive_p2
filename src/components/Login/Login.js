@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import AuthContext from "../../store/Authorization/AuthContext";
-import InputField from "../InputField/InputField";
 import x from "../../assets/figures/x.png";
 import o from "../../assets/figures/o.png";
 import { getStoredUser } from "../../services/user-service";
@@ -132,6 +131,7 @@ const Login = (props) => {
       )}
       <section className="box">
         <div className="box__image">
+          <h1>.</h1>
           <img src={logo} className="box__logo" alt="eCommerce logo" />
         </div>
         <form className="box__form" onSubmit={() => {}}>
@@ -140,6 +140,7 @@ const Login = (props) => {
           <fieldset className="field">
             <div className="input-field">
               <label
+                id={`username__label`}
                 className="input-field__label"
                 htmlFor={`username`}
                 style={{ color: `#fff` }}
@@ -153,10 +154,12 @@ const Login = (props) => {
                 placeholder={`Username`}
                 ref={usernameId}
                 id={`username`}
+                aria-describedby={`username__label`}
               />
             </div>
             <div className="input-field">
               <label
+                id={`password__label`}
                 className="input-field__label"
                 htmlFor={`password`}
                 style={{ color: `#fff` }}
@@ -170,6 +173,7 @@ const Login = (props) => {
                 placeholder={`Password`}
                 ref={passwordId}
                 id={`password`}
+                aria-describedby={`password__label`}
               />
             </div>
             <button
@@ -188,6 +192,7 @@ const Login = (props) => {
                 className="input-field__label"
                 htmlFor={`firstName`}
                 style={{ color: `#fff` }}
+                id={`firstName__label`}
               >
                 First Name
               </label>
@@ -198,6 +203,7 @@ const Login = (props) => {
                 placeholder={`John`}
                 ref={firstNameId}
                 id={`firstName`}
+                aria-describedby={`firstName__label`}
               />
             </div>
             <div className="input-field">
@@ -205,6 +211,7 @@ const Login = (props) => {
                 className="input-field__label"
                 htmlFor={`lastName`}
                 style={{ color: `#fff` }}
+                id={`lastName__label`}
               >
                 Last Name
               </label>
@@ -215,6 +222,7 @@ const Login = (props) => {
                 placeholder={`Doe`}
                 ref={lastNameId}
                 id={`lastName`}
+                aria-describedby={`lastName__label`}
               />
             </div>
             <div className="input-field">
@@ -222,6 +230,7 @@ const Login = (props) => {
                 className="input-field__label"
                 htmlFor={`usernameRegister`}
                 style={{ color: `#fff` }}
+                id={`usernameRegister__label`}
               >
                 Username
               </label>
@@ -232,6 +241,7 @@ const Login = (props) => {
                 placeholder={`Username`}
                 ref={usernameRegisterId}
                 id={`usernameRegister`}
+                aria-describedby={`usernameRegister__label`}
               />
             </div>
             <div className="input-field">
@@ -239,6 +249,7 @@ const Login = (props) => {
                 className="input-field__label"
                 htmlFor={`passwordRegister`}
                 style={{ color: `#fff` }}
+                id={`passwordRegister__label`}
               >
                 Password
               </label>
@@ -249,6 +260,7 @@ const Login = (props) => {
                 placeholder={`Password`}
                 ref={passwordRegisterId}
                 id={`passwordRegister`}
+                aria-describedby={`passwordRegister__label`}
               />
             </div>
             <button

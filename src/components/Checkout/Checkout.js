@@ -150,7 +150,9 @@ const Checkout = () => {
               <form className="customer__form">
                 <fieldset className="customer__fieldset">
                   <div className="customer__info">
-                    <p className="customer__title">Your Information</p>
+                    <p className="customer__title" id={`information`}>
+                      Your Information
+                    </p>
                     <label className="customer__label" htmlFor={`first-name`}>
                       First Name
                     </label>
@@ -161,6 +163,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getFirstName}
                       ref={firstNameId}
+                      aria-describedby={`information`}
                     />
                     <label className="customer__label" htmlFor={`last-name`}>
                       Last Name
@@ -172,6 +175,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getLastName}
                       ref={lastNameId}
+                      aria-describedby={`information`}
                     />
                     <label className="customer__label" htmlFor={`email`}>
                       Email
@@ -183,6 +187,7 @@ const Checkout = () => {
                       type={`email`}
                       onChange={getEmail}
                       ref={emailId}
+                      aria-describedby={`information`}
                     />
                     <label className="customer__label" htmlFor={`phone`}>
                       Phone
@@ -194,6 +199,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getPhone}
                       ref={phoneId}
+                      aria-describedby={`information`}
                     />
                     <label className="customer__label" htmlFor={`address`}>
                       Address
@@ -205,6 +211,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getAddress}
                       ref={addressId}
+                      aria-describedby={`information`}
                     />
                     <label className="customer__label" htmlFor={`country`}>
                       Country
@@ -216,10 +223,13 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getCountry}
                       ref={countryId}
+                      aria-describedby={`information`}
                     />
                   </div>
                   <div className="customer__card">
-                    <p className="customer__title card">Card Information</p>
+                    <p className="customer__title card" id={`card-info`}>
+                      Card Information
+                    </p>
                     <label className="customer__label" htmlFor={`card-number`}>
                       Card Number
                     </label>
@@ -230,6 +240,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getCardNumber}
                       ref={cardNumberId}
+                      aria-describedby={`card-info`}
                     />
                     <label className="customer__label" htmlFor={`card-date`}>
                       Expiration Date
@@ -241,6 +252,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getCardDate}
                       ref={cardDateId}
+                      aria-describedby={`card-info`}
                     />
                     <label className="customer__label" htmlFor={`card-cvc`}>
                       Verification Code
@@ -252,6 +264,7 @@ const Checkout = () => {
                       type={`text`}
                       onChange={getCardCsc}
                       ref={cardCscId}
+                      aria-describedby={`card-info`}
                     />
                     <div className="customer__actions">
                       <Button

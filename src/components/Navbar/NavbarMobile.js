@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import flash from "../../assets/figures/5-small.png";
-import x from "../../assets/figures/x.png";
 import AuthContext from "../../store/Authorization/AuthContext";
 import Button from "../Button/Button";
 import cartIcon from "../../assets/figures/shopping-cart.svg";

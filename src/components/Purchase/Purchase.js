@@ -24,6 +24,7 @@ const Purchase = (props) => {
   const INTERVAL = 6000;
 
   useEffect(() => {
+    document.title = "Remotion - Thanks!";
     setInterval(() => {
       if (colorClass === "pink") {
         setColorClass("green");

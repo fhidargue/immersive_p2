@@ -24,6 +24,7 @@ const NoPage = (props) => {
   const INTERVAL = 6000;
 
   useEffect(() => {
+    document.title = "Remotion - 404 Not Found";
     setInterval(() => {
       if (colorClass === "pink") {
         setColorClass("green");

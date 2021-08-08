@@ -25,6 +25,11 @@
       color: rgb(146, 146, 146);
     }
 
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
+    }
+
     @include media.query(">=500px") {
       width: rem(350px);
     }

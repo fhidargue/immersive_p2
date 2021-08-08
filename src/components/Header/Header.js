@@ -8,7 +8,7 @@ const logo =
 const Header = () => {
   return (
     <header className="header">
-      <Link to={`/`}>
+      <Link to={`/`} className="header__logo">
         <img src={logo} className="App-logo" alt="logo" />
       </Link>
       <Navbar />

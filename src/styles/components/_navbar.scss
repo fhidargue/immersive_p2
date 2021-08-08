@@ -40,6 +40,12 @@ $colors: #ff1f69, #fff, #ccc;
         justify-content: center;
         align-items: center;
       }
+
+      &:focus {
+        border: 3px solid $yellow;
+        outline: none;
+        padding: 0.5rem;
+      }
     }
   }
   @include media.query(">=md") {
@@ -54,9 +60,8 @@ $colors: #ff1f69, #fff, #ccc;
     background-color: transparent;
     border: none;
     position: relative;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out;
     &:hover {
-      // box-shadow: -0.5rem 0.5rem $light-green;
       cursor: pointer;
     }
     &::after {
@@ -79,6 +84,12 @@ $colors: #ff1f69, #fff, #ccc;
       content: "\2B9c";
       color: $yellow;
       margin-right: rem(5px);
+    }
+
+    &:focus {
+      border: 3px solid $yellow;
+      outline: none;
+      padding: 0.5rem;
     }
   }
 

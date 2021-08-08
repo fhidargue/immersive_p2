@@ -112,10 +112,15 @@
     margin-top: rem(10px);
     background-color: transparent;
     border: 3px solid $white;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out;
     &:hover {
       box-shadow: -0.5rem 0.5rem $pink;
       cursor: pointer;
+    }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
     }
   }
   &__span {

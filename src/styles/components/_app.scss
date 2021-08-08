@@ -34,6 +34,13 @@
   position: fixed;
   top: 0;
   width: 100vw;
+
+  &__logo {
+    &:focus {
+      border: 3px solid $yellow;
+      outline: none;
+    }
+  }
 }
 
 .App-link {

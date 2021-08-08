@@ -21,5 +21,10 @@
     &:hover {
       color: $pink;
     }
+
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
+    }
   }
 }

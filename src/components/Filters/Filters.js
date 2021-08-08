@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import search from "../../assets/images/services/search.svg";
 import useDebounce from "../../hooks/useDebounce";
 
@@ -10,6 +10,7 @@ const Filters = (props) => {
   const { setFilterValue } = props;
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, DEBOUNCE_DELAY);
+  const history = useHistory();
   const [popActive, setPopActive] = useState(false);
   const [teesActive, setTeesActive] = useState(false);
   const [bagsActive, setBagsActive] = useState(false);
@@ -43,6 +44,7 @@ const Filters = (props) => {
     setHatsActive(false);
     setBandActive(false);
     setSaleActive(false);
+    history.push(`/products/pop-culture`);
   };
 
   const changeBorderTees = () => {
@@ -52,6 +54,7 @@ const Filters = (props) => {
     setHatsActive(false);
     setBandActive(false);
     setSaleActive(false);
+    history.push(`/products/tees`);
   };
 
   const changeBorderBags = () => {
@@ -61,6 +64,7 @@ const Filters = (props) => {
     setHatsActive(false);
     setBandActive(false);
     setSaleActive(false);
+    history.push(`/products/bags`);
   };
 
   const changeBorderHats = () => {
@@ -70,6 +74,7 @@ const Filters = (props) => {
     setHatsActive(true);
     setBandActive(false);
     setSaleActive(false);
+    history.push(`/products/hats`);
   };
 
   const changeBorderBand = () => {
@@ -79,6 +84,7 @@ const Filters = (props) => {
     setHatsActive(false);
     setBandActive(true);
     setSaleActive(false);
+    history.push(`/products/band-merch`);
   };
 
   const changeBorderSale = () => {
@@ -88,6 +94,7 @@ const Filters = (props) => {
     setHatsActive(false);
     setBandActive(false);
     setSaleActive(true);
+    history.push(`/products/clearance`);
   };
 
   return (
@@ -104,137 +111,117 @@ const Filters = (props) => {
             </p>
             <ul className="categoryFilter__options">
               {!popActive ? (
-                <li className="categoryFilter__list category1">
-                  <Link
-                    to={`/products/pop-culture`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category1"
                     onClick={changeBorderPop}
                   >
                     Pop Culture
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li className="categoryFilter__list category1 active">
-                  <Link
-                    to={`/products/pop-culture`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category1 active"
                     onClick={changeBorderPop}
                   >
                     Pop Culture
-                  </Link>
+                  </button>
                 </li>
               )}
               {!teesActive ? (
-                <li className="categoryFilter__list category2">
-                  <Link
-                    to={`/products/tees`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category2"
                     onClick={changeBorderTees}
                   >
                     Tees
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li className="categoryFilter__list category2 active">
-                  <Link
-                    to={`/products/tees`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category2 active"
                     onClick={changeBorderTees}
                   >
                     Tees
-                  </Link>
+                  </button>
                 </li>
               )}
               {!bagsActive ? (
-                <li className="categoryFilter__list category3">
-                  <Link
-                    to={`/products/bags`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category3"
                     onClick={changeBorderBags}
                   >
                     Bags
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li className="categoryFilter__list category3 active">
-                  <Link
-                    to={`/products/bags`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category3 active"
                     onClick={changeBorderBags}
                   >
                     Bags
-                  </Link>
+                  </button>
                 </li>
               )}
               {!hatsActive ? (
-                <li className="categoryFilter__list category1">
-                  <Link
-                    to={`/products/hats`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category1"
                     onClick={changeBorderHats}
                   >
                     Hats
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li className="categoryFilter__list category1 active">
-                  <Link
-                    to={`/products/hats`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category1 active"
                     onClick={changeBorderHats}
                   >
                     Hats
-                  </Link>
+                  </button>
                 </li>
               )}
               {!bandActive ? (
-                <li
-                  className="categoryFilter__list category2"
-                  onClick={changeBorderBand}
-                >
-                  <Link
-                    to={`/products/band-merch`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category2"
+                    onClick={changeBorderBand}
                   >
                     Band Merch
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li
-                  className="categoryFilter__list category2 active"
-                  onClick={changeBorderBand}
-                >
-                  <Link
-                    to={`/products/band-merch`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category2 active"
+                    onClick={changeBorderBand}
                   >
                     Band Merch
-                  </Link>
+                  </button>
                 </li>
               )}
               {!saleActive ? (
-                <li
-                  className="categoryFilter__list category3"
-                  onClick={changeBorderSale}
-                >
-                  <Link
-                    to={`/products/clearance`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category3"
+                    onClick={changeBorderSale}
                   >
                     Clearance
-                  </Link>
+                  </button>
                 </li>
               ) : (
-                <li
-                  className="categoryFilter__list category3 active"
-                  onClick={changeBorderSale}
-                >
-                  <Link
-                    to={`/products/clearance`}
-                    className="categoryFilter__link"
+                <li className="categoryFilter__list">
+                  <button
+                    className="categoryFilter__link category3 active"
+                    onClick={changeBorderSale}
                   >
                     Clearance
-                  </Link>
+                  </button>
                 </li>
               )}
             </ul>

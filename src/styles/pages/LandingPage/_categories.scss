@@ -179,6 +179,11 @@
       width: rem(180px);
       font-size: 1.3rem;
     }
+
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
+    }
   }
 
   &__right {
@@ -201,6 +206,11 @@
     @include media.query(">=450px") {
       width: rem(180px);
       font-size: 1.3rem;
+    }
+
+    &:focus {
+      border: 4px solid $blue;
+      outline: none;
     }
   }
 
@@ -231,6 +241,11 @@
       @include media.query(">=450px") {
         width: rem(180px);
         font-size: 1.3rem;
+      }
+
+      &:focus {
+        border: 4px solid $blue;
+        outline: none;
       }
     }
   }

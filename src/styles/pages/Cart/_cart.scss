@@ -134,12 +134,17 @@
     color: $white;
     background-color: $black;
     border: none;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
-      color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out, color 0.4s ease-in-out,
+      background-color 0.4s ease-in-out;
 
     &:hover {
       box-shadow: -0.5rem 0.5rem $pink;
       cursor: pointer;
+    }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
     }
   }
 }
@@ -201,15 +206,58 @@
     }
     &.product1 {
       border: 4px solid $pink;
+      &:focus {
+        border: 3px solid $pink;
+        outline: none;
+      }
     }
     &.product2 {
       border: 4px solid $blue;
+      &:focus {
+        border: 3px solid $blue;
+        outline: none;
+      }
     }
     &.product3 {
       border: 4px solid $light-green;
+      &:focus {
+        border: 3px solid $light-green;
+        outline: none;
+      }
     }
     &.product4 {
       border: 4px solid $purple;
+      &:focus {
+        border: 3px solid $purple;
+        outline: none;
+      }
+    }
+  }
+
+  &__link {
+    &.product1 {
+      &:focus {
+        border: 3px solid $pink;
+        outline: none;
+      }
+    }
+    &.product2 {
+      &:focus {
+        border: 3px solid $blue;
+        outline: none;
+      }
+    }
+    &.product3 {
+      &:focus {
+        border: 3px solid $light-green;
+        outline: none;
+      }
+    }
+    &.product4 {
+      &:focus {
+        border: 3px solid $purple;
+        outline: none;
+      }
     }
   }
 
@@ -250,6 +298,11 @@
     justify-content: center;
     align-content: center;
     text-align: center;
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
+    }
   }
 
   &__label {
@@ -282,6 +335,11 @@
       background-color: $white;
       color: $black;
     }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
+    }
   }
 }
 
@@ -308,6 +366,11 @@
       background-color: $white;
       color: $black;
     }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
+    }
   }
 }
 
@@ -321,7 +384,7 @@
     color: $white;
     background-color: $black;
     border: none;
-    transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    transition: box-shadow 0.4s ease-in-out;
     &.product1 {
       &:hover {
         box-shadow: -0.5rem 0.5rem $pink;
@@ -346,6 +409,11 @@
         cursor: pointer;
       }
     }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
+    }
   }
 }
 
@@ -369,6 +437,11 @@
       cursor: pointer;
       background-color: $red;
       color: $white;
+    }
+
+    &:focus {
+      border: 3px solid $blue;
+      outline: none;
     }
   }
 }

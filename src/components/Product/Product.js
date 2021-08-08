@@ -36,7 +36,7 @@ const Product = (props) => {
           {`${name}, was added to your cart!`}
         </span>
       )}
-      <Link to={`/product/${url}`}>
+      <Link to={`/product/${url}`} className={`product__link product${id}`}>
         <div
           className={`product__image product${id}`}
           style={{ backgroundImage: `url(${image})` }}

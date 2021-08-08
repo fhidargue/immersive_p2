@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../../store/Cart/CartContext";
 import InventoryContext from "../../store/Inventory/InventoryContext";
 import $ from "jquery";
@@ -125,7 +125,10 @@ const ProductCart = (props) => {
         </span>
       )}
       <span className="mycart__message2" aria-live={`polite`}></span>
-      <Link to={`/product/${url}`}>
+      <Link
+        to={`/product/${url}`}
+        className={`cart-product__link product${id}`}
+      >
         <div
           className={`cart-product__image product${id}`}
           style={{ backgroundImage: `url(${image})` }}

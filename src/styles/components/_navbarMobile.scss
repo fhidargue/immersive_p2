@@ -80,6 +80,12 @@
       @include media.query(">=420px") {
         font-size: 3rem;
       }
+
+      &:focus {
+        border: 3px solid $yellow;
+        outline: none;
+        padding: 0.5rem;
+      }
     }
     &.active {
       transform: translateY(0);
@@ -92,7 +98,7 @@
       margin-bottom: 0.5rem;
 
       &.welcome {
-        width: rem(163px);
+        width: 22rem;
         position: absolute;
         top: -70%;
         right: 0;
@@ -162,6 +168,10 @@
       content: "\2B9c";
       color: $yellow;
       margin-right: rem(15px);
+    }
+    &:focus {
+      border: 3px solid $yellow;
+      outline: none;
     }
   }
 }
