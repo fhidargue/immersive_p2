@@ -65,31 +65,31 @@ const NoPage = (props) => {
         <section className="banner">
           <img
             src={image1}
-            alt={`Triangle`}
+            alt={`White triangle figure`}
             data-speed={`-5`}
             className="banner__image"
           />
           <img
             src={image2}
-            alt={`Ex`}
+            alt={`White ex figure`}
             data-speed={`5`}
             className="banner__image"
           />
           <img
             src={image3}
-            alt={`Square`}
+            alt={`White square figure`}
             data-speed={`2`}
             className="banner__image"
           />
           <img
             src={image4}
-            alt={`Pentagon`}
+            alt={`White pentagon figure`}
             data-speed={`6`}
             className="banner__image"
           />
           <img
             src={image5}
-            alt={`Flash`}
+            alt={`Qhite flash figure`}
             data-speed={`8`}
             className="banner__image"
           />
