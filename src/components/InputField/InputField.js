@@ -1,21 +1,35 @@
 import PropTypes from "prop-types";
 
 const InputField = (props) => {
-  const { value, handleChange, labelText, id, placeholder, type, name, color } = props;
+  const {
+    value,
+    handleChange,
+    labelText,
+    id,
+    placeholder,
+    type,
+    name,
+    color,
+    ref,
+  } = props;
 
   return (
     <div className="input-field">
-      <label className="input-field__label" htmlFor={id} style={{color:`${color}`}}>
+      <label
+        className="input-field__label"
+        htmlFor={id}
+        style={{ color: `${color}` }}
+      >
         {labelText}
       </label>
       <input
         className="input-field__input"
-        id={id}
         type={type}
         name={name}
         onChange={handleChange}
         placeholder={placeholder}
         value={value}
+        ref={ref}
       />
     </div>
   );
@@ -36,7 +50,7 @@ InputField.defaultProps = {
   placeholder: "",
   type: "text",
   name: "",
-  color: "#000"
+  color: "#000",
 };
 
 export default InputField;

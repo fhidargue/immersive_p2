@@ -25,7 +25,7 @@
   }
 
   &__image {
-    margin-top: 18rem;
+    margin-top: 23rem;
     margin-left: -12rem;
     opacity: 0;
     transform: translateY(-3rem);
@@ -37,8 +37,8 @@
     }
 
     @include media.query(">=sm") {
-      margin-top: -10rem;
-      margin-left: -10rem;
+      margin-top: 10rem;
+      margin-left: -25rem;
     }
   }
 }
@@ -94,7 +94,7 @@
       &.welcome {
         width: rem(163px);
         position: absolute;
-        bottom: -90%;
+        top: -70%;
         right: 0;
       }
 

@@ -7,7 +7,6 @@ import Footer from "../Footer/Footer";
 import Newsletter from "../Newsletter/Newsletter";
 import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
-import $ from "jquery";
 import CartContext from "../../store/Cart/CartContext";
 import Timeline from "../Timeline/Timeline";
 import { getStoredCart, getStoredTotal } from "../../services/product-service";
@@ -19,6 +18,10 @@ const ProductPage = () => {
     useContext(InventoryContext);
   const { setCartContext } = useContext(CartContext);
   const [backImage, setBackImage] = useState("");
+  const [isLess, setIsLess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const DEFAULT_DELAY = 5000;
 
   useEffect(() => {
     document.title = `Remotion - Product Page`;
@@ -36,6 +39,10 @@ const ProductPage = () => {
     };
   }, [setProduct, productUrl, setIsFetching]);
 
+  const getQuantity = (event) => {
+    setQuantity(event.target.value);
+  };
+
   const firstPortrait = () => {
     /**
      * On click, change the image main portrait to this first element
@@ -51,23 +58,16 @@ const ProductPage = () => {
   };
 
   const addToCart = () => {
-    let value = $(".product-page__input").val();
-    if (value === "" || value < 1) {
+    if (quantity === "" || quantity < 1) {
       /**
-       * Error in product quantity message
+       * Error message on adding a product to the cart
        */
-      let message = $(".product-page__message");
-      message.show();
-      message.addClass("error");
-      message.text("The product Quantity must be at least 1 unit.");
+      setIsLess(true);
       setTimeout(() => {
-        message.hide();
-        message.removeClass("error");
-        message.text("");
-      }, 5000);
+        setIsLess(false);
+      }, DEFAULT_DELAY);
     } else {
-      let qty = $(".product-page__input").val();
-      product.quantity = parseInt(qty);
+      product.quantity = quantity;
       let total = product.price * product.quantity;
       const cartTotal = getStoredTotal();
       let newTotal = Math.round((parseFloat(cartTotal) + total) * 100) / 100;
@@ -79,58 +79,19 @@ const ProductPage = () => {
       /**
        * Success in adding this product to the cart message
        */
-      let message = $(".product-page__message");
-      message.show();
-      message.addClass("success");
-      message.text(`${product.name}, was added to your cart!`);
+      setIsSuccess(true);
       setTimeout(() => {
-        message.hide();
-        message.removeClass("success");
-        message.text("");
-      }, 5000);
+        setIsSuccess(false);
+      }, DEFAULT_DELAY);
     }
   };
 
   const removeQuantity = () => {
-    let value = $(".product-page__input").val();
-    if (value === "" || value < 1) {
-      /**
-       * Error in product quantity message
-       */
-      let message = $(".product-page__message");
-      message.show();
-      message.addClass("error");
-      message.text("The product Quantity must be more than 1 unit.");
-      setTimeout(() => {
-        message.hide();
-        message.removeClass("error");
-        message.text("");
-      }, 5000);
-    } else {
-      value--;
-    }
-    $(".product-page__input").val(value);
+    setQuantity(quantity - 1);
   };
 
   const addQuantity = () => {
-    let value = $(".product-page__input").val();
-    if (value >= 100) {
-      /**
-       * Error in product quantity message
-       */
-      let message = $(".product-page__message");
-      message.show();
-      message.addClass("error");
-      message.text("The product Quantity must be less than 100 units.");
-      setTimeout(() => {
-        message.hide();
-        message.removeClass("error");
-        message.text("");
-      }, 5000);
-    } else {
-      value++;
-    }
-    $(".product-page__input").val(value);
+    setQuantity(quantity + 1);
   };
 
   return product ? (
@@ -141,7 +102,22 @@ const ProductPage = () => {
           <Spinner />
         ) : (
           <section className="product-page">
-            <span className="product-page__message" aria-live={`polite`}></span>
+            {isLess && (
+              <span
+                className={`product-page__message error`}
+                aria-live={`polite`}
+              >
+                The product Quantity must be at least 1 unit.
+              </span>
+            )}
+            {isSuccess && (
+              <span
+                className={`product-page__message success`}
+                aria-live={`polite`}
+              >
+                {`${product.name}, was added to your cart!`}
+              </span>
+            )}
             <div className="product-page__timeline">
               <Timeline page={product.name} />
             </div>
@@ -234,6 +210,8 @@ const ProductPage = () => {
                             placeholder={`1`}
                             min={`1`}
                             max={`100`}
+                            value={quantity}
+                            onChange={getQuantity}
                           />
                           <Button
                             className={`plus`}

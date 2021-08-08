@@ -43,7 +43,6 @@ const ProductList = (props) => {
       <Header />
       <main className="main">
         <section className="product-list">
-          <span className="product-page__message" aria-live={`polite`}></span>
           <h1 className="product-list__title" data-aos="zoom-in">
             Product List
           </h1>

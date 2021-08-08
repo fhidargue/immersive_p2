@@ -33,6 +33,27 @@
   }
 
   &__message {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border: 3px solid $black;
+    background-color: $white;
+    z-index: 300;
+    padding: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    &.error {
+      color: $red;
+    }
+
+    &.success {
+      color: $normal-green;
+    }
+  }
+
+  &__message2 {
     display: none;
     width: 100%;
     position: fixed;
@@ -60,7 +81,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 3rem;
 
   @include media.query(">=sm") {
     flex-direction: row;
@@ -121,10 +142,6 @@
       cursor: pointer;
     }
   }
-
-  // @include media.query(">=lg") {
-  //   height: 130vh;
-  // }
 }
 
 .product-checkout {
@@ -170,9 +187,18 @@
   }
 
   &__image {
-    height: rem(340px);
+    height: rem(317px);
     width: rem(240px);
-    margin-top: 1.5rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-size 1s ease-in-out;
+
+    &:hover {
+      background-size: 130%;
+      background-position: center;
+      cursor: pointer;
+    }
     &.product1 {
       border: 4px solid $pink;
     }
@@ -326,8 +352,8 @@
 .cart-remove {
   &__btn {
     position: absolute;
-    top: rem(15px);
-    right: rem(40px);
+    top: rem(-10px);
+    right: rem(45px);
     font-size: 1.2rem;
     font-weight: 700;
     font-family: "Encode Sans SC", sans-serif;
@@ -335,6 +361,8 @@
     border: 3px solid $black;
     background-color: $white;
     color: $black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 
     &:hover {

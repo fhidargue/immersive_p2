@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import AuthContext from "../../store/Authorization/AuthContext";
 import InputField from "../InputField/InputField";
@@ -12,9 +12,19 @@ const logo =
 const Login = (props) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
+  const usernameId = useRef();
   const [password, setPassword] = useState("");
+  const passwordId = useRef();
   const [firstName, setFirstName] = useState("");
+  const firstNameId = useRef();
   const [lastName, setLastName] = useState("");
+  const lastNameId = useRef();
+  const [usernameRegister, setUsernameRegister] = useState("");
+  const usernameRegisterId = useRef();
+  const [passwordRegister, setPasswordRegister] = useState("");
+  const passwordRegisterId = useRef();
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("");
   const { isLogged, setIsLogged, setUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -37,36 +47,89 @@ const Login = (props) => {
     setLastName(event.target.value);
   };
 
+  const getUsernameRegister = (event) => {
+    setUsernameRegister(event.target.value);
+  };
+
+  const getPasswordRegister = (event) => {
+    setPasswordRegister(event.target.value);
+  };
+
   const getLogin = () => {
-    sessionStorage.setItem(
-      "user",
-      JSON.stringify({
-        username: username,
-        password: password,
-      })
-    );
-    setUser(getStoredUser());
-    setIsLogged(true);
-    history.push("/");
+    if (username === "") {
+      setIsError(true);
+      setMessage("You must enter a username to login.");
+      usernameId.current.focus();
+    } else if (password === "") {
+      setIsError(true);
+      setMessage("You must enter a password to login.");
+      passwordId.current.focus();
+    } else {
+      sessionStorage.setItem(
+        "user",
+        JSON.stringify({
+          username: username,
+          password: password,
+        })
+      );
+      setUser(getStoredUser());
+      setIsLogged(true);
+      history.push("/");
+    }
+    const timeout = setTimeout(() => {
+      setIsError(false);
+    }, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
   };
 
   const getRegister = () => {
-    sessionStorage.setItem(
-      "user",
-      JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        password: password,
-      })
-    );
-    setUser(getStoredUser());
-    setIsLogged(true);
-    history.push("/");
+    if (firstName === "") {
+      setIsError(true);
+      setMessage("You must enter a first name to register.");
+      firstNameId.current.focus();
+    } else if (lastName === "") {
+      setIsError(true);
+      setMessage("You must enter a last name to register.");
+      lastNameId.current.focus();
+    } else if (usernameRegister === "") {
+      setIsError(true);
+      setMessage("You must enter a username to register.");
+      usernameRegisterId.current.focus();
+    } else if (passwordRegister === "") {
+      setIsError(true);
+      setMessage("You must enter a password to register.");
+      passwordRegisterId.current.focus();
+    } else {
+      sessionStorage.setItem(
+        "user",
+        JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          username: usernameRegister,
+          password: passwordRegister,
+        })
+      );
+      setUser(getStoredUser());
+      setIsLogged(true);
+      history.push("/");
+    }
+    const timeout = setTimeout(() => {
+      setIsError(false);
+    }, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
   };
 
   return !isLogged ? (
     <main className="login">
+      {isError && (
+        <span className="login__message error" aria-live={`polite`}>
+          {message}
+        </span>
+      )}
       <section className="box">
         <div className="box__image">
           <img src={logo} className="box__logo" alt="eCommerce logo" />
@@ -75,24 +138,40 @@ const Login = (props) => {
           <img src={x} alt={`Figure of an ex`} className="box__figure--x" />
           <img src={o} alt={`Figure of a circle`} className="box__figure--o" />
           <fieldset className="field">
-            <InputField
-              id={`username`}
-              labelText={`Username`}
-              type={`text`}
-              name={`username`}
-              handleChange={getUsername}
-              placeholder={`Username`}
-              color={`#fff`}
-            />
-            <InputField
-              id={`password`}
-              labelText={`Password`}
-              type={`password`}
-              name={`password`}
-              handleChange={getPassword}
-              placeholder={`Password`}
-              color={`#fff`}
-            />
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`username`}
+                style={{ color: `#fff` }}
+              >
+                Username
+              </label>
+              <input
+                className="input-field__input"
+                type={`text`}
+                onChange={getUsername}
+                placeholder={`Username`}
+                ref={usernameId}
+                id={`username`}
+              />
+            </div>
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`password`}
+                style={{ color: `#fff` }}
+              >
+                Password
+              </label>
+              <input
+                className="input-field__input"
+                type={`password`}
+                onChange={getPassword}
+                placeholder={`Password`}
+                ref={passwordId}
+                id={`password`}
+              />
+            </div>
             <button
               type={`button`}
               className="field__btn"
@@ -104,42 +183,74 @@ const Login = (props) => {
             </button>
           </fieldset>
           <fieldset className="register">
-            <InputField
-              id={`first-name`}
-              labelText={`First Name`}
-              type={`text`}
-              name={`first-name`}
-              handleChange={getFirstName}
-              placeholder={`John`}
-              color={`#fff`}
-            />
-            <InputField
-              id={`last-name`}
-              labelText={`Last Name`}
-              type={`text`}
-              name={`last-name`}
-              handleChange={getLastName}
-              placeholder={`Doe`}
-              color={`#fff`}
-            />
-            <InputField
-              id={`username`}
-              labelText={`Username`}
-              type={`text`}
-              name={`username`}
-              handleChange={getUsername}
-              placeholder={`Username`}
-              color={`#fff`}
-            />
-            <InputField
-              id={`password`}
-              labelText={`Password`}
-              type={`password`}
-              name={`password`}
-              handleChange={getPassword}
-              placeholder={`Password`}
-              color={`#fff`}
-            />
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`firstName`}
+                style={{ color: `#fff` }}
+              >
+                First Name
+              </label>
+              <input
+                className="input-field__input"
+                type={`text`}
+                onChange={getFirstName}
+                placeholder={`John`}
+                ref={firstNameId}
+                id={`firstName`}
+              />
+            </div>
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`lastName`}
+                style={{ color: `#fff` }}
+              >
+                Last Name
+              </label>
+              <input
+                className="input-field__input"
+                type={`text`}
+                onChange={getLastName}
+                placeholder={`Doe`}
+                ref={lastNameId}
+                id={`lastName`}
+              />
+            </div>
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`usernameRegister`}
+                style={{ color: `#fff` }}
+              >
+                Username
+              </label>
+              <input
+                className="input-field__input"
+                type={`text`}
+                onChange={getUsernameRegister}
+                placeholder={`Username`}
+                ref={usernameRegisterId}
+                id={`usernameRegister`}
+              />
+            </div>
+            <div className="input-field">
+              <label
+                className="input-field__label"
+                htmlFor={`passwordRegister`}
+                style={{ color: `#fff` }}
+              >
+                Password
+              </label>
+              <input
+                className="input-field__input"
+                type={`password`}
+                onChange={getPasswordRegister}
+                placeholder={`Password`}
+                ref={passwordRegisterId}
+                id={`passwordRegister`}
+              />
+            </div>
             <button
               type={`button`}
               className="field__btn"

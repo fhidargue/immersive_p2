@@ -10,7 +10,7 @@ import image9 from "../../assets/figures/9.png";
 import image10 from "../../assets/figures/10.png";
 import image11 from "../../assets/figures/11.png";
 import image12 from "../../assets/figures/12.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
@@ -18,8 +18,24 @@ import Newsletter from "../Newsletter/Newsletter";
 import Footer from "../Footer/Footer";
 
 const NoPage = (props) => {
+  const [colorClass, setColorClass] = useState("pink");
   const DEFAULT_MARGIN = -5;
   const history = useHistory();
+  const INTERVAL = 6000;
+
+  useEffect(() => {
+    setInterval(() => {
+      if (colorClass === "pink") {
+        setColorClass("green");
+      } else if (colorClass === "green") {
+        setColorClass("yellow");
+      } else if (colorClass === "yellow") {
+        setColorClass("blue");
+      } else if (colorClass === "blue") {
+        setColorClass("pink");
+      }
+    }, INTERVAL);
+  }, [colorClass, setColorClass]);
 
   useEffect(() => {
     /**
@@ -120,7 +136,9 @@ const NoPage = (props) => {
             className="banner__image"
           />
           <div className="purchase">
-            <h1 className="purchase__number">404 Page not Found</h1>
+            <h1 className={`purchase__number ${colorClass}`}>
+              404 Page not Found
+            </h1>
             <p className="purchase__thanks">We couldn't find this page!</p>
             <Button
               className={`purchase`}

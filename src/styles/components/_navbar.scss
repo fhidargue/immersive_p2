@@ -122,15 +122,15 @@ $colors: #ff1f69, #fff, #ccc;
 
     &Number {
       position: absolute;
-      top: 19%;
-      left: 34%;
+      top: rem(7px);
+      left: rem(14px);
       color: $black;
 
       &--mobile {
         font-size: 2rem;
         position: absolute;
-        top: 10%;
-        left: 28%;
+        top: rem(4px);
+        left: rem(16px);
         color: $black;
       }
     }

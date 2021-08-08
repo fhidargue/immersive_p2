@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartContext from "../../store/Cart/CartContext";
 import InventoryContext from "../../store/Inventory/InventoryContext";
 import $ from "jquery";
@@ -10,6 +10,8 @@ const ProductCart = (props) => {
   const [newQuantity, setNewQuantity] = useState(quantity);
   const { setIsFetching } = useContext(InventoryContext);
   const { setCartContext } = useContext(CartContext);
+  const [isLess, setIsLess] = useState(false);
+  const DEFAULT_DELAY = 5000;
 
   let cart = JSON.parse(localStorage.getItem("cart"));
   let cartTotal = localStorage.getItem("cartTotal");
@@ -33,17 +35,10 @@ const ProductCart = (props) => {
       /**
        * Error in product quantity message
        */
-      let message = $(".mycart__message");
-      message.show();
-      message.addClass("error");
-      message.text(
-        "The product Quantity must be more than 1 unit and less than 100."
-      );
+      setIsLess(true);
       setTimeout(() => {
-        message.hide();
-        message.removeClass("error");
-        message.text("");
-      }, 5000);
+        setIsLess(false);
+      }, DEFAULT_DELAY);
     } else {
       setIsFetching(true);
       const timeout = setTimeout(() => {
@@ -66,6 +61,18 @@ const ProductCart = (props) => {
         updatedCart[productIndex].quantity = newQuantity;
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setIsFetching(false);
+        /**
+         * Removing an object from cart success message
+         */
+        let message = $(".mycart__message2");
+        message.show();
+        message.addClass("success");
+        message.text(`${item.name}'s quantity was modified!`);
+        setTimeout(() => {
+          message.hide();
+          message.removeClass("success");
+          message.text("");
+        }, 5000);
       }, 1500);
       return () => {
         clearTimeout(timeout);
@@ -95,7 +102,7 @@ const ProductCart = (props) => {
       /**
        * Removing an object from cart success message
        */
-      let message = $(".mycart__message");
+      let message = $(".mycart__message2");
       message.show();
       message.addClass("success");
       message.text(`${item.name}, was removed from your cart.`);
@@ -112,12 +119,19 @@ const ProductCart = (props) => {
 
   return (
     <div className="cart-product__wrapper">
+      {isLess && (
+        <span className="mycart__message error" aria-live={`polite`}>
+          The product Quantity must be more than 1 unit and less than 100.
+        </span>
+      )}
+      <span className="mycart__message2" aria-live={`polite`}></span>
       <Link to={`/product/${url}`}>
-        <img
+        <div
           className={`cart-product__image product${id}`}
-          src={image}
+          style={{ backgroundImage: `url(${image})` }}
           alt={`Product ${name}`}
-        />
+          role={`img`}
+        ></div>
       </Link>
       <Button
         className={`cart-remove`}

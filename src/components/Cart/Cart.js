@@ -33,7 +33,7 @@ const Cart = () => {
   }, [setIsFetching]);
 
   const toCheckout = () => {
-    if (parseInt(cartTotal) === 0) {
+    if (parseFloat(cartTotal) === 0 || typeof cartTotal === "undefined") {
       let message = $(".mycart__message");
       message.show();
       message.addClass("error");
@@ -58,7 +58,6 @@ const Cart = () => {
           </h1>
           <Timeline page={`My Cart`} url={`shopping-cart`} />
           <div className="mycart__wrapper">
-            <span className="mycart__message" aria-live={`polite`}></span>
             <div className="mycart-info">
               {isFetching ? (
                 <Spinner />
@@ -75,6 +74,7 @@ const Cart = () => {
                           id={item.id}
                           price={item.price}
                           item={item}
+                          image={item.first_image}
                         />
                       );
                     })}

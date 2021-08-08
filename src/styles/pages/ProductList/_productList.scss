@@ -16,6 +16,10 @@
       flex-direction: row;
       align-items: stretch;
     }
+
+    @include media.query(">=1800px") {
+      width: 90%;
+    }
   }
 
   &__title {
@@ -28,5 +32,12 @@
     @include media.query(">=xl") {
       font-size: 5.2rem;
     }
+  }
+
+  @include media.query(">=1800px") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }

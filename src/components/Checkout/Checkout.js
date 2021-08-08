@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import InventoryContext from "../../store/Inventory/InventoryContext";
 import Button from "../Button/Button";
@@ -11,6 +11,26 @@ import Timeline from "../Timeline/Timeline";
 const Checkout = () => {
   const { isFetching, setIsFetching } = useContext(InventoryContext);
   const history = useHistory();
+  const [firstName, setFirstName] = useState("");
+  const firstNameId = useRef();
+  const [lastName, setLastName] = useState("");
+  const lastNameId = useRef();
+  const [email, setEmail] = useState("");
+  const emailId = useRef();
+  const [phone, setPhone] = useState("");
+  const phoneId = useRef();
+  const [address, setAddress] = useState("");
+  const addressId = useRef();
+  const [country, setCountry] = useState("");
+  const countryId = useRef();
+  const [cardNumber, setCardNumber] = useState("");
+  const cardNumberId = useRef();
+  const [cardDate, setCardDate] = useState("");
+  const cardDateId = useRef();
+  const [cardCsc, setCardCsc] = useState("");
+  const cardCscId = useRef();
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("");
   let cartTotal = localStorage.getItem("cartTotal") || 0;
 
   useEffect(() => {
@@ -23,12 +43,93 @@ const Checkout = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [setIsFetching]);
+  }, [setIsFetching, setIsError]);
+
+  const getFirstName = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const getLastName = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const getEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const getPhone = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const getAddress = (event) => {
+    setAddress(event.target.value);
+  };
+
+  const getCountry = (event) => {
+    setCountry(event.target.value);
+  };
+
+  const getCardNumber = (event) => {
+    setCardNumber(event.target.value);
+  };
+
+  const getCardDate = (event) => {
+    setCardDate(event.target.value);
+  };
+
+  const getCardCsc = (event) => {
+    setCardCsc(event.target.value);
+  };
 
   const completeCheckout = () => {
-    localStorage.removeItem("cart");
-    localStorage.removeItem("cartTotal");
-    history.push("/purchase");
+    if (firstName === "") {
+      setIsError(true);
+      setMessage("You must enter a first name.");
+      firstNameId.current.focus();
+    } else if (lastName === "") {
+      setIsError(true);
+      setMessage("You must enter a last name.");
+      lastNameId.current.focus();
+    } else if (email === "") {
+      setIsError(true);
+      setMessage("You must enter an email.");
+      emailId.current.focus();
+    } else if (phone === "") {
+      setIsError(true);
+      setMessage("You must enter a phone number.");
+      phoneId.current.focus();
+    } else if (address === "") {
+      setIsError(true);
+      setMessage("You must enter an address.");
+      addressId.current.focus();
+    } else if (country === "") {
+      setIsError(true);
+      setMessage("You must enter a country.");
+      countryId.current.focus();
+    } else if (cardNumber === "") {
+      setIsError(true);
+      setMessage("You must enter a card number.");
+      cardNumberId.current.focus();
+    } else if (cardDate === "") {
+      setIsError(true);
+      setMessage("You must enter a card expiration date.");
+      cardDateId.current.focus();
+    } else if (cardCsc === "") {
+      setIsError(true);
+      setMessage("You must enter a card security code.");
+      cardCscId.current.focus();
+    } else {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cartTotal");
+      history.push("/purchase");
+    }
+    const timeout = setTimeout(() => {
+      setIsError(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   };
   return (
     <div className="App">
@@ -40,7 +141,11 @@ const Checkout = () => {
           </h1>
           <Timeline page={`Checkout`} url={`checkout`} />
           <div className="checkout__wrapper">
-            <span className="checkout__message" aria-live={`polite`}></span>
+            {isError && (
+              <span className="checkout__message error" aria-live={`polite`}>
+                {message}
+              </span>
+            )}
             <div className="customer">
               <form className="customer__form">
                 <fieldset className="customer__fieldset">
@@ -54,6 +159,8 @@ const Checkout = () => {
                       id={`first-name`}
                       placeholder={`John`}
                       type={`text`}
+                      onChange={getFirstName}
+                      ref={firstNameId}
                     />
                     <label className="customer__label" htmlFor={`last-name`}>
                       Last Name
@@ -63,6 +170,8 @@ const Checkout = () => {
                       id={`last-name`}
                       placeholder={`Doe`}
                       type={`text`}
+                      onChange={getLastName}
+                      ref={lastNameId}
                     />
                     <label className="customer__label" htmlFor={`email`}>
                       Email
@@ -72,6 +181,8 @@ const Checkout = () => {
                       id={`email`}
                       placeholder={`example@domain.com`}
                       type={`email`}
+                      onChange={getEmail}
+                      ref={emailId}
                     />
                     <label className="customer__label" htmlFor={`phone`}>
                       Phone
@@ -81,6 +192,8 @@ const Checkout = () => {
                       id={`phone`}
                       placeholder={`(201) 555-5555`}
                       type={`text`}
+                      onChange={getPhone}
+                      ref={phoneId}
                     />
                     <label className="customer__label" htmlFor={`address`}>
                       Address
@@ -90,6 +203,8 @@ const Checkout = () => {
                       id={`address`}
                       placeholder={`123 Main Street, Anytown`}
                       type={`text`}
+                      onChange={getAddress}
+                      ref={addressId}
                     />
                     <label className="customer__label" htmlFor={`country`}>
                       Country
@@ -99,6 +214,8 @@ const Checkout = () => {
                       id={`country`}
                       placeholder={`United States`}
                       type={`text`}
+                      onChange={getCountry}
+                      ref={countryId}
                     />
                   </div>
                   <div className="customer__card">
@@ -111,6 +228,8 @@ const Checkout = () => {
                       placeholder={`1234567890123456`}
                       id={`card-number`}
                       type={`text`}
+                      onChange={getCardNumber}
+                      ref={cardNumberId}
                     />
                     <label className="customer__label" htmlFor={`card-date`}>
                       Expiration Date
@@ -120,6 +239,8 @@ const Checkout = () => {
                       id={`card-date`}
                       placeholder={`09/2021`}
                       type={`text`}
+                      onChange={getCardDate}
+                      ref={cardDateId}
                     />
                     <label className="customer__label" htmlFor={`card-cvc`}>
                       Verification Code
@@ -129,6 +250,8 @@ const Checkout = () => {
                       id={`card-cvc`}
                       placeholder={`123`}
                       type={`text`}
+                      onChange={getCardCsc}
+                      ref={cardCscId}
                     />
                     <div className="customer__actions">
                       <Button
@@ -142,14 +265,6 @@ const Checkout = () => {
                 </fieldset>
               </form>
             </div>
-            {/* <div className="card">
-              <p className="card__title">Card Information</p>
-              <form>
-                <fieldset>
-                  
-                </fieldset>
-              </form>
-            </div> */}
             <div className="order">
               {isFetching ? (
                 <Spinner2 />

@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import { getStoredTotal, getStoredCart } from "../../services/product-service";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../../store/Cart/CartContext";
-import $ from "jquery";
 
 const Product = (props) => {
   const { image, name, price, id, url, item } = props;
   const { setCartContext } = useContext(CartContext);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const DEFAULT_DELAY = 5000;
 
   const addToCart = () => {
     item.quantity = 1;
@@ -22,19 +23,19 @@ const Product = (props) => {
     /**
      * Success in adding this product to the cart message
      */
-    let message = $(".product-page__message");
-    message.show();
-    message.addClass("success");
-    message.text(`${item.name}, was added to your cart!`);
+    setIsSuccess(true);
     setTimeout(() => {
-      message.hide();
-      message.removeClass("success");
-      message.text("");
-    }, 5000);
+      setIsSuccess(false);
+    }, DEFAULT_DELAY);
   };
 
   return (
     <div className="product__wrapper">
+      {isSuccess && (
+        <span className="product-page__message success" aria-live={`polite`}>
+          {`${name}, was added to your cart!`}
+        </span>
+      )}
       <Link to={`/product/${url}`}>
         <div
           className={`product__image product${id}`}

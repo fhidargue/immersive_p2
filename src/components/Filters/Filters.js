@@ -96,7 +96,12 @@ const Filters = (props) => {
         <p className="filters__title">Filters</p>
         <div className="filters__options">
           <div className="categoryFilter">
-            <p className="categoryFilter__title">Categories</p>
+            <p className="categoryFilter__title">
+              Categories /{" "}
+              <Link to={`/products/all`} className="categoryFilter__reset">
+                Reset
+              </Link>
+            </p>
             <ul className="categoryFilter__options">
               {!popActive ? (
                 <li className="categoryFilter__list category1">
