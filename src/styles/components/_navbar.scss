@@ -42,9 +42,8 @@ $colors: #ff1f69, #fff, #ccc;
       }
 
       &:focus {
-        border: 3px solid $yellow;
+        color: $yellow;
         outline: none;
-        padding: 0.5rem;
       }
     }
   }
@@ -87,7 +86,7 @@ $colors: #ff1f69, #fff, #ccc;
     }
 
     &:focus {
-      border: 3px solid $yellow;
+      color: $yellow;
       outline: none;
       padding: 0.5rem;
     }
