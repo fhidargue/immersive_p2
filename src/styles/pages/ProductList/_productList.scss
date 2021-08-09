@@ -40,4 +40,9 @@
     align-items: center;
     flex-direction: column;
   }
+
+  &__empty {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
 }
