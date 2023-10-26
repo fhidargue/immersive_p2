@@ -1,5 +1,14 @@
 # Getting Started with Create React App
 
+Immersive programming bootcamp
+
+Second project
+
+Tasks:
+- Using React, create an ecommerce website.
+- Use local storage for the authentication, cart and payment flow.
+- Import and use different libraries, one exmaple is the pagination.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
